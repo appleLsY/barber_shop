@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    </head>
+    <body>
+        <div class="banner-bg-one" id="home">
+            <div class="container">
+                <div class="header">
+                    <div class="logo">
+                            <a href="index.html"><h1>Fashion</h1><span>Change Your Hair Style<span></a>
+                    </div>
+                            
+                    <div class="top-nav">										 
+                            <label class="mobile_menu" for="mobile_menu">
+                            <span>Menu</span>
+                            </label>
+                        <ul class="nav">
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li class="dropdown1"><a href="#">美发预约</a>
+                                <ul class="dropdown2">
+                                        <li><a href="order.html">剪发</a></li>
+                                        <li><a href="order.html">烫发</a></li>
+                                        <li><a href="order.html">染发</a></li>
+                                        <li><a href="order.html">套餐</a></li>
+                                </ul>
+                            </li> 
+                            <li><a href="#">社区分享</a></li>   
+                            <li><a href="login.html">登录</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    </div>
+                    <div class="contents">
+                        <div class="page-bar">
+                            <div class="share">
+
+                            </div>
+                            <div class="page_divide">
+                                <ul>
+                                    <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
+                                    <li v-if="cur==1"><a class="banclick">上一页</a></li>
+                                    <li v-for="index in indexs"  v-bind:class="{ 'active': cur == index}">
+                                        <a v-on:click="btnClick(index)">{{ index }}</a>
+                                    </li>
+                                    <li v-if="cur!=all"><a v-on:click="cur++,pageClick()">下一页</a></li>
+                                    <li v-if="cur == all"><a class="banclick">下一页</a></li>
+                                    <li><a>共<i>{{all}}</i>页</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+	<div class="copyright">
+		<p>Copyright &copy; 2017 liushuyu</p>
+	</div>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.min.js"></script>
+    <script src="js/share.js"></script>
+    </body>
+</html>

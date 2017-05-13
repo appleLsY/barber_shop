@@ -1,0 +1,28 @@
+var vm=new Vue({
+    el:"#home",
+    data:{
+        selected:"洗发",
+        price:100,
+        options:[
+            {text:"洗发",value:"one"},
+            {text:"剪发",value:"two"},
+            {text:"烫发",value:"three"},
+            {text:"染发",value:"four"}
+        ],
+        barbers:[
+            {text:"理发师1",value:"barber_one"},
+            {text:"理发师2",value:"barber_two"},
+            {text:"理发师1",value:"barber_three"},
+        ],
+        times:[
+            {text:"10:20-11:00",value:"time_one"},
+            {text:"11:30-12:00",value:"time_two"},
+            {text:"14:00-15:00",value:"time_three"},
+        ],
+        pays:[
+            {text:"现金支付",value:"pay_one"},
+            {text:"微信支付",value:"pay_two"},
+            {text:"支付宝",value:"pay_three"},
+        ]
+    }
+})

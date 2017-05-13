@@ -1,0 +1,29 @@
+var vm=new Vue({
+    el:"#home",
+    data:{
+        name:"pangzi",
+        phone:"18511709041",
+        email:"365889074@qq.com",
+        barbername:"",
+        readonly:true,
+        isedit:false,
+        noedit:true,
+        introduce:"我是一名有着15年的资深理发师，能够完成各种类型的发型",
+    },
+    created:function(){
+        this.barbername=this.name;
+    },
+    methods:{
+        show:function(){
+            this.noedit=false;
+            this.isedit=true;
+            this.readonly=false
+        },
+        save:function(){
+            alert("保存成功");
+            this.noedit=true;
+            this.isedit=false;
+            this.readonly=true
+        }
+    }
+})
