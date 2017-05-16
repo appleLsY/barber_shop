@@ -9,22 +9,35 @@
         <div id="hear">
             <div class="login" v-if="ifLogin">
                 <h1>Login</h1>
-                <input type="text" id="username" v-model="usern" placeholder="手机号或邮箱" />
+                <input type="text" id="username" v-model="usern" v-on:blur="test_account_login" placeholder="手机号或邮箱" />
+                <div class="user_account_right" v-if="if_userlogin_true">
+                    <img src="images/right_two.png" alt=""/>
+                </div>
                 <input class="signin" v-model="userError" v-if="ifUserError"></input>
                 <input type="password" id="password" v-model="passw" placeholder="密码" />
                 <input class="signin" v-model="userError" v-if="ifPassError"></input>
-                <div class="but" v-on:click="login">登录</div>
-                <div class="but" v-on:click="sign">注册</div>
+                <div class="user_login">
+                    <div class="but fl" v-on:click="login">登录</div>
+                    <div class="but fr" v-on:click="sign">注册</div>
+                </div>
             </div>
             <div class="login" v-if="ifRegest">
                 <h1>Regest</h1>
-                <input type="text" v-model="regestuser" id="username" placeholder="手机号或邮箱" />
+                    <input type="text" v-model="regestuser" id="username" v-on:blur="test_account_regest" placeholder="手机号或邮箱" />
+                <div class="user_account_right" v-if="if_user_true">
+                    <img src="images/right_two.png" alt=""/>
+                </div>
                 <input class="signin" v-model="regestUserError" v-if="ifRegestUserError"></input>
                 <input type="password" v-model="regestpass" id="password" placeholder="密码" />
-                <input type="password" v-model="repass" id="repassword" placeholder="确认密码" />
-                <input class="signin" v-model="repassError" v-if="IfRepassError"></input>               
-                <div class="but fl" v-on:click="submitRegest">确认</div>
-                <div class="but fr" v-on:click="returnLogin">返回</div>
+                <input type="password" v-model="repass" id="repassword" v-on:blur="test_account_repass" placeholder="确认密码" />
+                <div class="user_account_right" v-if="if_repass_true">
+                    <img src="images/right_two.png" alt=""/>
+                </div>
+                <input class="signin" v-model="repassError" v-if="IfRepassError"></input> 
+                <div class="user_login">              
+                    <div class="but fl" v-on:click="submitRegest">确认</div>
+                    <div class="but fr" v-on:click="returnLogin">返回</div>
+                </div>
             </div>
         </div>
         <script src="js/vue.js"></script>

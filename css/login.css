@@ -4,6 +4,12 @@ html{
     overflow: hidden;
     font-style: sans-serif;
 }
+.user_login{
+    width: 278px;
+}
+.login{
+    width: 360px;
+}
 .fl{
     float: left;
 }
@@ -33,7 +39,7 @@ body{
 }
 h1{
     font-size: 2em;
-    margin: 0.67em 0;
+    margin-right: 80px;
 }
 input{
     width: 278px;
@@ -47,8 +53,14 @@ input{
     border-radius: 4px;
     background-color: white;
 }
+.user_account_right{
+    float: right;
+    width: 36px;
+    height: 35px;
+    line-height: 35px;
+}
 .but{
-    width: 70px;
+    width: 60px;
     min-height: 20px;
     display: block;
     background-color: white;
@@ -62,6 +74,7 @@ input{
     /*float: left;*/
     text-align: center;
     display: inline-block;
+    cursor: pointer;
 }
 .signin{
     width: 278px;
