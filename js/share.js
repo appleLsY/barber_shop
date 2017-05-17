@@ -6,8 +6,6 @@ var pageBar = new Vue({
         len:3,//页面展示公告的数量
         cur: 1,//当前页码
         pageLen:5,
-        image_all:0,
-        image_cur:1,
         min:true,
         max:false,
         search_name:"",
@@ -91,14 +89,12 @@ var pageBar = new Vue({
         publish:function(){
             window.location.href="publish_article.html"
         },
-        show:function(index){
-            alert(index);
+        show:function(){
             if(this.min==true){
                 this.min=false;
                 this.max=true;
             }
-            else
-            {
+            else{
                 this.min=true;
                 this.max=false;
             }
@@ -140,8 +136,5 @@ var pageBar = new Vue({
             }
             return ar;
         },
-        image_no:function(){
-            this.image_all=Math.ceil(this.articles.share_image.length);
-        }
     }
 })

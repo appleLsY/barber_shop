@@ -836,7 +836,7 @@ li{
   cursor: pointer;
 }
 .max{
-  width: 200px;
+  width: auto;
   height: auto;
   cursor: pointer;
 }

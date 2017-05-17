@@ -66,7 +66,7 @@
                                 <div class="jiange"></div>
                                 <div class="share_photo" v-for="img in article.share_image">
                                     <div class="share_photo_each">
-                                        <img v-bind:src="img" v-on:click="show" v-bind:class="{'min':min,'max':max}">
+                                        <img v-bind:src="img" v-on:click="show()" v-bind:class="{'min':min,'max':max}">
                                     </div>
                                 </div>
                             </div>
