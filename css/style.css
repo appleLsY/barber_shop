@@ -723,11 +723,123 @@ li{
 .share{
   width: 80%;
   height: 500px;
-  background-color: yellow;
   margin: 0 auto;
 }
-
-
+.publish{
+  width: 60%;
+  height: 80px;
+  line-height: 80px;
+  float: right;
+}
+.look{
+  width: 150px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #efdfdf;
+  text-align: center;
+  margin: 10px 0 0 60px;
+  float: left;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+}
+.publish_by_one{
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #efdfdf;
+  margin: 10px 0 0 50px;
+  float: left;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+}
+.search_article{
+  height: 40px;
+  line-height: 40px;
+  margin: 5px 0 0 50px;
+  float: left;
+}
+.search_article input{
+  width: 150px;
+  height: 30px;
+}
+.search_on{
+  cursor: pointer;
+}
+.see_share{
+  width: 60%;
+  height: 140px;
+  clear: both;
+  margin: 10px 0 0 150px;
+  float: left;
+  border-bottom: 1px solid #efdfdf;
+}
+.share_touxiang{
+  width: 60px;
+  height: 60px;
+  border: 1px solid #efdfdf;
+  margin-top: 5px;
+  margin-left: 10px;
+  float: left;
+}
+.share_touxiang img{
+  width: 60px;
+  height: 60px;
+}
+.view{
+  width: 450px;
+  height: 68px;
+  float: left;
+}
+.share_name{
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #8c7de1;
+  font-size: 16px;
+}
+.share_content{
+  width: 400px;
+  text-indent: 26px;
+  margin-left: 10px;
+  color: white;
+}
+.jiange{
+  width: 90px;
+  height: 60px;
+  float: left;
+}
+.share_photo{
+  width: 80px;
+  height: 60px;
+  float: left;
+  margin-top: 5px;
+}
+.share_photo_each{
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-left: 5px;
+  clear: both;
+}
+/*.share_photo_each img{
+  width: 60px;
+  height: 60px;
+  float: left;
+  cursor: pointer;
+}*/
+.min{
+  width: 60px;
+  height: 60px;
+  float:left;
+  cursor: pointer;
+}
+.max{
+  width: 200px;
+  height: auto;
+  cursor: pointer;
+}
 /*查看预约信息*/
 
 

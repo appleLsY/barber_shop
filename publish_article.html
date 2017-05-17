@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/styles/simditor.css" />
+    </head>
+    <body>
+        <div class="publish_article">
+            <textarea id="textarea_id"></textarea>
+        </div>
+
+        <script type="text/javascript" src="js/scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="js/scripts/module.js"></script>
+        <script type="text/javascript" src="js/scripts/hotkeys.js"></script>
+        <script type="text/javascript" src="js/scripts/uploader.js"></script>
+        <script type="text/javascript" src="js/scripts/simditor.js"></script>
+        <script type="text/javascript">
+        var editor = new Simditor({
+        textarea: $('#textarea_id'),
+        placeholder: '',
+        defaultImage: 'images/user.png',
+        params: {},
+        upload: false,
+        tabIndent: true,
+        toolbar: true,
+        toolbarFloat: true,
+        toolbarFloatOffset: 0,
+        toolbarHidden: false,
+        pasteImage: false,
+        cleanPaste: false,
+        });
+    </script>
+    </body>
+</html>

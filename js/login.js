@@ -136,9 +136,9 @@
                     date.setTime(date.getTime()+expires*24*3600*1000);  
                     cookie+="; expires="+date.toGMTString();  
                 }            
-                alert(cookie);
-                document.cookie="account=18511709041;expires=Tue,23 May 2017 14:11:59 GMT";
-                alert(document.cookie);
+                //alert(cookie);
+                Document.cookie=cookie;
+                alert(Document.cookie);
             }
       }
   })

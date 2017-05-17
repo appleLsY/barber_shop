@@ -39,10 +39,39 @@
                     </div>
                     </div>
                     <div class="contents">
-                        <div class="page-bar">
-                            <div class="share">
-
+                        <div class="share">
+                            <div class="publish">
+                                <div class="look">查看自己发表的文章</div>
+                                <div class="publish_by_one" v-on:click="publish">发表</div>
+                                <div class="search_article">
+                                    <input value="" placeholder="请输入搜索文字" v-model="search_name" />
+                                    <img src="images/search_one.png" alt="" class="search_on" />
+                                </div>
                             </div>
+                            <div class="see_share" v-for="article in newData">
+                                <div class="share_touxiang">
+                                    <img v-bind:src="article.photo">
+                                </div>
+                                <div class="view">
+                                    <div class="share_name">
+                                        {{article.name}}
+                                    </div>
+                                    <div class="share_content">
+                                        {{article.content}}
+                                    </div>
+                                    <!--<div class="share_image">
+                                        {{article.title}}
+                                    </div>-->
+                                </div>
+                                <div class="jiange"></div>
+                                <div class="share_photo" v-for="img in article.share_image">
+                                    <div class="share_photo_each">
+                                        <img v-bind:src="img" v-on:click="show" v-bind:class="{'min':min,'max':max}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page-bar">
                             <div class="page_divide">
                                 <ul>
                                     <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
