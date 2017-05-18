@@ -9,29 +9,47 @@
     </head>
     <body>
         <div class="publish_article">
-            <textarea id="textarea_id"></textarea>
+            <div class="publish_all">
+                <div class="publish_tool">
+                    富文本编辑框
+                    <!--<textarea maxlength="58" onkeyup="check()" id="textarea_id"></textarea>-->
+                </div>
+                <div class="publish_click">
+                    <div class="publish_cancel">返回</div>
+                    <div class="publish_submit">确定</div>
+                </div>
+            </div>
         </div>
-
+        <div class="copyright">
+            <p>Copyright &copy; 2017 liushuyu</p>
+        </div>
         <script type="text/javascript" src="js/scripts/jquery.min.js"></script>
         <script type="text/javascript" src="js/scripts/module.js"></script>
         <script type="text/javascript" src="js/scripts/hotkeys.js"></script>
         <script type="text/javascript" src="js/scripts/uploader.js"></script>
         <script type="text/javascript" src="js/scripts/simditor.js"></script>
         <script type="text/javascript">
-        var editor = new Simditor({
-        textarea: $('#textarea_id'),
-        placeholder: '',
-        defaultImage: 'images/user.png',
-        params: {},
-        upload: false,
-        tabIndent: true,
-        toolbar: true,
-        toolbarFloat: true,
-        toolbarFloatOffset: 0,
-        toolbarHidden: false,
-        pasteImage: false,
-        cleanPaste: false,
-        });
+    //     var editor = new Simditor({
+    //     textarea: $('#textarea_id'),
+    //     placeholder: '',
+    //     defaultImage: 'images/user.png',
+    //     params: {},
+    //     upload: false,
+    //     tabIndent: true,
+    //     toolbar: true,
+    //     toolbarFloat: true,
+    //     toolbarFloatOffset: 0,
+    //     toolbarHidden: false,
+    //     pasteImage: false,
+    //     cleanPaste: false,
+    // });
+    function check(){
+        var texts=document.getElementById("textarea_id").value;
+        if(texts.length>58){
+            alert("dashdas");
+        }
+
+    }
     </script>
     </body>
 </html>

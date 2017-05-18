@@ -6,6 +6,7 @@ var pageBar = new Vue({
         len:3,//页面展示公告的数量
         cur: 1,//当前页码
         pageLen:5,
+        imagecur:1,
         min:true,
         max:false,
         search_name:"",
@@ -14,7 +15,7 @@ var pageBar = new Vue({
         {name:"hello1",photo:"images/user_share_one.png",share_image:["images/google.png","images/god2.jpg"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
         {name:"hello2",photo:"images/user_share_one.png",share_image:["images/google.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
         {name:"hello3",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello4",photo:"images/user_share_one.png",share_image:"",content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
+        {name:"hello4",photo:"images/user_share_one.png",share_image:["images/god2.jpg"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
         {name:"hello5",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
         {name:"hello6",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
         {name:"hello7",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
@@ -89,10 +90,15 @@ var pageBar = new Vue({
         publish:function(){
             window.location.href="publish_article.html"
         },
-        show:function(){
-            if(this.min==true){
-                this.min=false;
-                this.max=true;
+        show:function(image_index){
+            alert(image_index);
+            alert(this.imagecur);
+            if(this.imagecur==image_index)
+            {
+                if(this.min==true){
+                    this.min=false;
+                    this.max=true;
+                }
             }
             else{
                 this.min=true;

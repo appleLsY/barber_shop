@@ -65,9 +65,7 @@
                                 </div>
                                 <div class="jiange"></div>
                                 <div class="share_photo" v-for="img in article.share_image">
-                                    <div class="share_photo_each">
-                                        <img v-bind:src="img" v-on:click="show()" v-bind:class="{'min':min,'max':max}">
-                                    </div>
+                                        <img v-bind:src="img" class="min" onclick="show(this)">
                                 </div>
                             </div>
                         </div>
@@ -94,5 +92,38 @@
     <script src="js/vue.js"></script>
     <script src="js/vue-resource.min.js"></script>
     <script src="js/share.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+    var data=document.getElementsByClassName("min");
+    $(data).ready(function(){
+        for(var i=0;i<data.length;i++){
+            data[i].id=i;
+        }
+    })
+    var data=document.getElementsByClassName("min");
+    for(var i=0;i<data.length;i++){
+        data[i].id=i;
+    }
+    var show=function(obj){
+        var data=document.getElementsByClassName("min");
+        var data1=document.getElementsByClassName("max");
+        if(data1.length!=0){
+            obj.setAttribute("class","min");
+        }
+        else{
+            for(var i=0;i<data.length+data1.length;i++){
+                if(obj.id==data[i].id){
+                    data[i].setAttribute("class","max")
+                    break;
+                }
+        }
+            // data[i].addEventListener('click',i===data[i].id?function(){
+            //     alert("lala");
+            // }:function(){
+            //     alert("asda");
+            // })
+        }
+    }
+    </script>
     </body>
 </html>
