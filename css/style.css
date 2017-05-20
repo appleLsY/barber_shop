@@ -343,13 +343,35 @@ a.shop{
   text-align: center;
   width: 274px;
   height: 274px;
-  margin-right: 1%;
+  margin-right: 0.5%;
   background-color: #fff;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -o-border-radius: 50%;
   position: relative;
+ }
+ .picture{
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: -15%;
+  left: 35%;
+  background: #eee;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+ }
+ .picture img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
  }
  .album-box h4{
  font-size: 2.5em;
@@ -391,6 +413,12 @@ i.s1,i.s2,i.s3,i.s4 {
 	-ms-transition: all 0.3s ease-out;
 	-o-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out;
+}
+.more_barber{
+  width: 100%;
+  cursor: pointer;
+  float: right;
+  text-align: right;
 }
 /*--copyright--*/
 .copyright{
@@ -455,8 +483,9 @@ color:#00b29f;
 }
 .article_content{
   margin-left: 15%;
-  font-size: 24px;
+  font-size: 20px;
   text-overflow: ellipsis;
+  color: white
 }
 /*实现分页的css*/
 .page-bar{
