@@ -3,9 +3,9 @@ var pageBar = new Vue({
     data: {
         all:"",
         pages:[],
-        len:3,//页面展示公告的数量
+        len:6,//页面展示公告的数量
         cur: 1,//当前页码
-        pageLen:5,
+        pageLen:3,
         async:false,//是否请求服务器端的数据
         barbers:[ //公告文章
         ],
@@ -46,6 +46,9 @@ var pageBar = new Vue({
 
             })
         },
+        return_index:function(){
+            window.location.href="index.html"
+        },
         btnClick: function(data){//页码点击事件
             if(data != this.cur){
                 this.cur = data ;
@@ -74,17 +77,17 @@ var pageBar = new Vue({
             var left = 1;
             var right = this.all;
             var ar = [];
-            if(this.all>= 5){ //保证显示的页数只有5条 1-5 超过5 例如6 就会变成2-6
-                if(this.cur > 3 && this.cur < this.all-2){
-                        left = this.cur - 2
-                        right = this.cur + 2
+            if(this.all>= 3){ //保证显示的页数只有5条 1-5 超过5 例如6 就会变成2-6
+                if(this.cur > 1 && this.cur < this.all-1){
+                        left = this.cur - 1
+                        right = this.cur + 1
                 }else{
-                    if(this.cur<=3){
+                    if(this.cur<=1){
                         left = 1
-                        right = 5
+                        right = 3
                     }else{
                         right = this.all
-                        left = this.all -4
+                        left = this.all -2
                     }
                 }
             }

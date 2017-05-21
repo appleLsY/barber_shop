@@ -17,11 +17,11 @@ $.ajax({
              "删除"+"</button></div></div>"
             )
          }
-        for(var i=1;i<(Math.ceil(data.length/6)+1);i++)
+        for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
         {
             $("#announcement_page").append("<option>"+i+"</option>")
         }
-        $("#all_page").text("共"+Math.ceil(data.length/6)+"页");
+        $("#all_page").text("共"+Math.ceil(data.length/5)+"页");
      }
  });
  //添加公告
@@ -47,6 +47,8 @@ $.ajax({
 $("#edit_save").click(function(){
     var edit_title=$("#slName").val();
     var edit_content=$("#announce_content").val();
+    var edit_id=$("#hide_announce_id").val();
+    alert(edit_id);
     console.log(edit_title);
     console.log(edit_content);
     $.ajax({
@@ -54,8 +56,9 @@ $("#edit_save").click(function(){
         type:'PUT',
         dataType:'json',
         data:{
+            Id:edit_id,
             Title:edit_title,
-            Content:edit_content,
+            Content:edit_content
         },
         success:function(data){
             alert("修改成功")
@@ -99,7 +102,7 @@ $("#edit_save").click(function(){
      var useremail=$("#publish_user_email").val();
      var userinfo=$("#publish_user_personalinfo").val();
      $.ajax({
-         url:'http://localhost:11162/api/v1/account/allBarber',
+         url:'http://localhost:11162/api/v1/account/barber',
          type:'POST',
          dataType:'json',
          data:{
@@ -109,7 +112,7 @@ $("#edit_save").click(function(){
              PersonalInfo:userinfo,
          },
          success:function(data){
-             alert("死胖子");
+             $("#user_manage").click();
          }
      })
  })

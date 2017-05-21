@@ -50,6 +50,9 @@
                             </div>
                         </div>
                         <div class="page-bar">
+                            <div class="return_page" v-on:click="return_index">
+                                返回
+                            </div>
                             <div class="page_divide">
                                 <ul>
                                     <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>

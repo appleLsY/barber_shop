@@ -39,17 +39,32 @@
                     </div>
                     </div>
                     <div class="contents">
-                        <div class="news_content" >
-                            <div class="article" v-for="barber in newBarber">
+                        <div class="news_content">
+                            <div class="barberinfo_each" v-for="barber in newBarber">
+                                <div class="barberinfo_img">
+                                    <div class="barberinfo_each_img">                                        
+                                    </div>
+                                </div>
+                                <div class="barberinfo_name">
+                                    {{barber.Name}}
+                                </div>
+                                <div class="barberinfo_personalinfo">
+                                    {{barber.PersonalInfo}}
+                                </div>
+                            </div>
+                            <!--<div class="article" v-for="barber in newBarber">
                                 <div class="article_title">
                                     <p>{{barber.Name}}</p>
                                 </div>
                                 <div class="article_content">
                                     {{barber.PersonalInfo}}
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="page-bar">
+                            <div class="return_page" v-on:click="return_index">
+                                返回
+                            </div>
                             <div class="page_divide">
                                 <ul>
                                     <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
