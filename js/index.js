@@ -36,7 +36,7 @@ var vm=new Vue({
         getBarber:function(){
             this.$http.get('http://localhost:11162/api/v1/account/allBarber').then(function(data){
                 this.barbers=data.body;
-                for(var i=0;i<this.barbers.length;i++)
+                for(var i=0;i<4;i++)
                 {
                     this.newBarbers.push(this.barbers[i]);
                 }

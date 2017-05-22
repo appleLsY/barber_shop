@@ -1,0 +1,23 @@
+@charset "utf-8";
+.comWidth{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.header{
+    background-color: #8566EE;
+    height: 80px;
+}
+/*headerBar*/
+.headerBar{height: 60px;padding-top: 10px;}
+.headerBar .logo img{height: 60px;display: inline-block;}
+.headerBar .titleText{height: 60px;line-height: 60px;font-size: 14px;display: inline-block;margin-left: 10px;color: white;}
+.headerBar .navBar ul li i{margin-right: 4px;}
+.headerBar .navBar ul li a{color: white}
+.headerBar .navBar ul li a:hover{text-decoration: none;color: #FF9500}
+.headerBar .navBar{}
+.headerBar .navBar ul{}
+.headerBar .navBar ul li{height: 60px;line-height: 60px;font-size: 14px;display: inline-block;margin-right: 10px;color: lightgray;}
+/*content*/
+.content{margin-top:40px;}
+.evaluation_link a{color: #87cb76;padding-left: 10px;}

@@ -674,12 +674,12 @@ li{
 /*理发师个人信息*/
 .barber_info{
   width: 600px;
-  height: 360px;
+  height: 260px;
   position: absolute;
   left: 50%;
   top: 50%;
   margin-left: -300px;
-  margin-top: -180px;         /*将div垂直居中的展示在大的div里面*/
+  margin-top: -130px;         /*将div垂直居中的展示在大的div里面*/
 }
 .barber_user_info{
   width: 380px;
@@ -687,7 +687,6 @@ li{
   margin-top: 10px;
 }
 .barber_user_info label{
-  color: white;
   font-size: 14px;
   font-family: "STSong","华文宋体";
   width: 80px;
@@ -698,19 +697,17 @@ li{
   height: 32px;
   font-size: 14px;
   margin-left: 20px;
-  border: 1px solid #ffffff;
+  border: 1px solid lightgray;
   border-width:0 0 1px;
   background: transparent; /*input背景透明*/
-  color: white;
 }
 .isedit{
   width: 200px;
   height: 32px;
   font-size: 14px;
   margin-left: 20px;
-  border: 1px solid #ffffff;
+  border: 1px solid lightgray;
   background: transparent; /*input背景透明*/
-  color: white;
 }
 /*个人介绍textarea的样式*/
 .barber_introduce{
@@ -721,18 +718,15 @@ li{
   height: 80px;
   font-size: 14px;
   margin-left: 20px;
-  color: white;
   float: right;
   margin-right: 10.5%;
   background: transparent; /*input背景透明*/
-  border: 0;
 }
 .istext{
   width: 200px;
   height: 80px;
   font-size: 14px;
   margin-left: 20px;
-  color: white;
   float: right;
   margin-right: 10.5%;
   background: transparent; /*input背景透明*/
@@ -948,7 +942,6 @@ li{
   height: 150px;
   line-height: 150px;
   border-radius: 50%;
-  background-color: blueviolet;
 }
 .barberinfo_name{
   width: 100px;

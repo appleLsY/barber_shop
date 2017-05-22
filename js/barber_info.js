@@ -1,7 +1,7 @@
 var vm=new Vue({
     el:"#home",
     data:{
-        name:"pangzi",
+        name:"haha",
         phone:"18511709041",
         email:"365889074@qq.com",
         barbername:"",

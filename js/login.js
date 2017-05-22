@@ -39,6 +39,7 @@
               else{
                   this.if_userlogin_true=false;
                   this.ifUserError=true;
+                  this.userError="手机号格式不正确";
               }
           },
           test_account_repass:function(){

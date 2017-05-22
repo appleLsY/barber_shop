@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="../css/reset.css" rel="stylesheet">
+        <link href="../css/barberIndex.css" rel="stylesheet">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">
+            <div class="headerBar comWidth">
+                <div class="logo fl"><img src="../images/barber.png" alt="TEASystem"/></div>
+                <div class="titleText fl" >lucky理发店</div>
+                <div class="navBar">
+                    <ul class="fr">
+                        <li>
+                            <a href="barber.html">查看预约</a>
+                        </li>
+                        <li>
+                            <a href="#">时间安排</a>
+                        </li>
+                        <li>
+                            <a href="#">查看公告</a>
+                        </li>
+                        <li>
+                            <a href="#">分享</a>
+                        </li>
+                        <li>
+                            <a href="#">haha</a>
+                        </li>
+                        <li>
+                            <a href="barber_info">退出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="content comWidth">
+                    <div class="barber_info">
+                        <div class="barber_user_info">
+                            <img src="../images/user_two.png" alt="" />
+                            <label>用户姓名</label>
+                            <input v-model="barbername" readonly="readonly" class="noedit" />
+                        </div>
+                        <div class="barber_user_info">
+                            <img src="../images/phone.png" alt="" />
+                            <label>手机号码</label>
+                            <input v-model="phone" v-bind:readonly="readonly" v-bind:class="{'isedit':isedit,'noedit':noedit}" />
+                        </div>
+                        <div class="barber_user_info">
+                            <img src="../images/email.png" alt="" />
+                            <label>邮箱地址</label>
+                            <input v-model="email" v-bind:readonly="readonly" v-bind:class="{'isedit':isedit,'noedit':noedit}"/>
+                        </div>
+                        <div class="barber_user_info barber_introduce">
+                            <img src="../images/introduce.png" alt="" />
+                            <label>个人介绍</label>
+                            <textarea v-model="introduce" v-bind:readonly="readonly" v-bind:class="{'istext':isedit,'notext':noedit}">
+                            </textarea>
+                        </div>
+                        <div class="barber_user_info">
+                            <div class="edit" v-on:click="show">修改</div>
+                            <div class="queren" v-on:click="save">确认</div>
+                        </div>
+                    </div>
+        </div>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/barber_info.js"></script>
+    </body>
+</html>

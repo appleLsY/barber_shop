@@ -13,7 +13,7 @@ $.ajax({
              "<div class=\"col-xs-2\">"+data[i].CreatedOn+"</div>"+
              "<div class=\"col-xs-2\">"+data[i].CreatedBy+"</div>"+
              "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#reviseAnnouncement\" onclick=\"show_announcement("+data[i].Id+")\">"+
-             "修改"+"</button><button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteAnnouncement\" onclick=\"del("+data[i].Id+")\">"+
+             "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteAnnouncement\" onclick=\"del("+data[i].Id+")\">"+
              "删除"+"</button></div></div>"
             )
          }
@@ -70,11 +70,13 @@ $("#edit_save").click(function(){
  //用户管理请求
  $("#user_manage").click(function(){
      $("#alluser").html("");
+     $("#user_page").text("");
      $.ajax({
          url:'http://localhost:11162/api/v1/account/allBarber',
          type:'GET',
          dataType:'json',
          success:function(data){
+             console.log(data);
             for(var i=0;i<data.length;i++){
                 $("#alluser").append("<div class=\"row\"><div class=\"col-xs-1\">"+data[i].Id+"</div>"+
                 "<div class=\"col-xs-1\">"+data[i].Name+"</div>"+
@@ -82,17 +84,15 @@ $("#edit_save").click(function(){
                 "<div class=\"col-xs-2\">"+data[i].Email+"</div>"+
                 "<div class=\"col-xs-4\">"+data[i].PersonalInfo+"</div>"+
                 "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#changeChar\" onclick=\"show_user("+data[i].Id+")\">"+
-                "修改"+"</button><button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteChar\">"+
+                "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteChar\" onclick=\"del_user("+data[i].Id+")\">"+
                 "删除"+"</button></div></div>"
                 )
-//
-// onclick=\"del("+data[i].Id+")\"
             }
-            for(var i=1;i<(Math.ceil(data.length/6)+1);i++)
+            for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
             {
                 $("#user_page").append("<option>"+i+"</option>")
             }
-        $("#user_all_page").text("共"+Math.ceil(data.length/6)+"页");
+        $("#user_all_page").text("共"+Math.ceil(data.length/5)+"页");
          }
      })
  })
@@ -116,4 +116,52 @@ $("#edit_save").click(function(){
          }
      })
  })
+
+//套餐管理
+$("#pakage_manage").click(function(){
+     $("#allpackage").html("");
+     $("#package_page").text("");
+     $.ajax({
+         url:'http://localhost:11162/api/v1/package/all',
+         type:'GET',
+         dataType:'json',
+         success:function(data){
+            for(var i=0;i<data.length;i++){
+                $("#allpackage").append("<div class=\"row\"><div class=\"col-xs-2\">"+data[i].Id+"</div>"+
+                "<div class=\"col-xs-2\">"+data[i].Name+"</div>"+
+                "<div class=\"col-xs-2\">"+data[i].Description+"</div>"+
+                "<div class=\"col-xs-2\">"+data[i].Timespan+"</div>"+
+                "<div class=\"col-xs-2\">"+data[i].Price+"</div>"+
+                "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#revisePackage\">"+
+                "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
+                "删除"+"</button></div></div>"
+                )
+// onclick=\"show_user("+data[i].Id+")\"
+// onclick=\"del("+data[i].Id+")\"
+            }
+            for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
+            {
+                $("#package_page").append("<option>"+i+"</option>")
+            }
+        $("#all_package").text("共"+Math.ceil(data.length/5)+"页");
+         }
+     })
+
+})
+
+
+//订单管理
+$("#order_manage").click(function(){
+
+})
+
+//分享管理
+$("#share_manage").click(function(){
+
+})
+
+//店铺管理
+$("#shopinfo_manage").click(function(){
+    
+})
 }) ;
