@@ -1,19 +1,13 @@
 var vm=new Vue({
     el:"#home",
     data:{
+        barber_select:"",
+        taocan_select:"",
         selected:"洗发",
-        price:100,
+        price:"",
         options:[
-            {text:"洗发",value:"one"},
-            {text:"剪发",value:"two"},
-            {text:"烫发",value:"three"},
-            {text:"染发",value:"four"}
         ],
-        barbers:[
-            {text:"理发师1",value:"barber_one"},
-            {text:"理发师2",value:"barber_two"},
-            {text:"理发师1",value:"barber_three"},
-        ],
+        barbers:[],
         times:[
             {text:"10:20-11:00",value:"time_one"},
             {text:"11:30-12:00",value:"time_two"},
@@ -24,5 +18,26 @@ var vm=new Vue({
             {text:"微信支付",value:"pay_two"},
             {text:"支付宝",value:"pay_three"},
         ]
-    }
+    },
+    methods:{
+        getData:function (datas){
+            this.$http.get("http://localhost:11162/api/v1/account/allBarber").then(function(data){
+                this.barbers=data.body;
+                this.barber_select=this.barbers[0].Name;
+            })
+        },
+        gettaocan:function(datas){
+            this.$http.get("http://localhost:11162/api/v1/package/all?pa=1").then(function(data){
+            this.options=data.body;
+            this.taocan_select=this.options[0].Name;
+            })
+        },
+        yuyue:function(){
+            alert(this.barber_select);
+        },
+    },
+    created:function(){
+        this.getData();
+        this.gettaocan();
+    },
 })

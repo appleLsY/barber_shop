@@ -77,6 +77,7 @@
             <div class="meun-item" href="#user" aria-controls="user" role="tab" data-toggle="tab" id="pakage_manage"><img src="images/icon_user_grey.png">套餐管理</div>
             <div class="meun-item" href="#chan" aria-controls="chan" role="tab" data-toggle="tab" id="order_manage"><img src="images/order_grey.png">订单管理</div>
             <div class="meun-item" href="#chat" aria-controls="chat" role="tab" data-toggle="tab" id="share_manage"><img src="images/icon_change_grey.png">分享管理</div>
+            <div class="meun-item" href="#count" aria-controls="count" role="tab" data-toggle="tab" id="count_manage"><img src="images/count_grey.png">数据统计</div>
             <div class="meun-title">基础设置</div>
             <div class="meun-item" href="#scho" aria-controls="scho" role="tab" data-toggle="tab" id="shopinfo_manage"><img src="images/icon_house_grey.png">店铺信息</div>
         </div>
@@ -881,7 +882,195 @@
                     <!-- /.modal -->
 
                 </div>
-                <!--时间段管理模块-->
+                <!--数据统计模块-->
+                <div role="tabpanel" class="tab-pane" id="count">
+                    <div class="check-div form-inline">
+                        <div class="col-xs-4" style="float:right;">
+                            <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                            <button class="btn btn-white btn-xs ">查 询 </button>
+                        </div>
+                    </div>
+                    <div class="data-div">
+                        <div class="row tableHeader">
+                            <div class="col-xs-1 ">
+                                分享编号
+                            </div>
+                            <div class="col-xs-2">
+                                分享标题
+                            </div>
+                            <div class="col-xs-5">
+                                分享内容
+                            </div>
+                            <div class="col-xs-2">
+                                操作
+                            </div>
+                        </div>
+                        <div class="tablebody">
+
+                            <div class="row">
+                                <div class="col-xs-1 ">
+                                    1
+                                </div>
+                                <div class="col-xs-2">
+                                    啦啦啦
+                                </div>
+                                <div class="col-xs-5">
+                                    很满意
+                                </div>
+                                <div class="col-xs-2">
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteUser">删除</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!--页码块-->
+                    <footer class="footer">
+                        <ul class="pagination">
+                            <li>
+                                <select>
+                                <option>1</option>
+                            </select> 页
+                            </li>
+                            <li class="gray">
+                                共1页
+                            </li>
+                            <li>
+                                <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                            </li>
+                            <li>
+                                <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                            </li>
+                        </ul>
+                    </footer>
+
+                    <!--弹出添加用户窗口-->
+                    <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">添加套餐</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form class="form-horizontal">
+                                            <div class="form-group ">
+                                                <label for="sName" class="col-xs-3 control-label">套餐名称：</label>
+                                                <div class="col-xs-8 ">
+                                                    <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sLink" class="col-xs-3 control-label">套餐内容：</label>
+                                                <div class="col-xs-8 ">
+                                                    <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sOrd" class="col-xs-3 control-label">花费时间：</label>
+                                                <div class="col-xs-8">
+                                                    <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sKnot" class="col-xs-3 control-label">套餐价格：</label>
+                                                <div class="col-xs-8">
+                                                    <input type="" class="form-control input-sm duiqi" id="sKnot" placeholder="">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                    <button type="button" class="btn btn-xs btn-green">保 存</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+
+                    <!--弹出修改用户窗口-->
+                    <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">修改套餐</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form class="form-horizontal">
+                                            <div class="form-group ">
+                                                <label for="sName" class="col-xs-3 control-label">套餐名称：</label>
+                                                <div class="col-xs-8 ">
+                                                    <input type="text" class="form-control input-sm duiqi" id="sName" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sLink" class="col-xs-3 control-label">套餐内容：</label>
+                                                <div class="col-xs-8 ">
+                                                    <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sOrd" class="col-xs-3 control-label">花费时间：</label>
+                                                <div class="col-xs-8">
+                                                    <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sKnot" class="col-xs-3 control-label">价格：</label>
+                                                <div class="col-xs-8">
+                                                    <input type="" class="form-control input-sm duiqi" id="sKnot" placeholder="">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                    <button type="button" class="btn btn-xs btn-green">保 存</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+
+                    <!--弹出删除用户警告窗口-->
+                    <div class="modal fade" id="deleteUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        确定要删除该套餐？删除后不可恢复！
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                    <button type="button" class="btn  btn-xs btn-danger">保 存</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+
+                </div>
+                <!--店铺信息管理模块-->
                 <div role="tabpanel" class="tab-pane" id="scho">
                     <div class="check-div form-inline">
                         <button class="btn btn-yellow btn-xs " data-toggle="modal" data-target="#addTime">添加时间段 </button>
@@ -972,36 +1161,11 @@
     <script src="js/admin.js"></script>
     <!-- this page specific inline scripts -->
     <script>
-        //min/max slider
-        function huadong(my, unit, def, max) {
-            $(my).noUiSlider({
-                range: [0, max],
-                start: [def],
-                handles: 1,
-                connect: 'upper',
-                slide: function () {
-                    var val = Math.floor($(this).val());
-                    $(this).find(".noUi-handle").text(
-                        val + unit
-                    );
-                    console.log($(this).find(".noUi-handle").parent().parent().html());
-                },
-                set: function () {
-                    var val = Math.floor($(this).val());
-                    $(this).find(".noUi-handle").text(
-                        val + unit
-                    );
-                }
-            });
-            $(my).val(def, true);
-        }
-        huadong('.slider-minmax1', "分钟", "5", 30);
-        huadong('.slider-minmax2', "分钟", "6", 15);
-        huadong('.slider-minmax3', "分钟", "10", 60);
-        huadong('.slider-minmax4', "次", "2", 10);
-        huadong('.slider-minmax5', "天", "3", 7);
-        huadong('.slider-minmax6', "天", "8", 10);
-
+        $("#announcement_page").change(function(){
+            var dt=$("#announcement_page").val();
+            alert(dt);
+        })
+        
         //公告管理
         function show_announcement(data){
             $("#hide_announce_id").val(data);

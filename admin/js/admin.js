@@ -19,7 +19,7 @@ $.ajax({
          }
         for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
         {
-            $("#announcement_page").append("<option>"+i+"</option>")
+            $("#announcement_page").append("<option value=\""+i+"\">"+i+"</option>")
         }
         $("#all_page").text("共"+Math.ceil(data.length/5)+"页");
      }
@@ -76,8 +76,7 @@ $("#edit_save").click(function(){
          type:'GET',
          dataType:'json',
          success:function(data){
-             console.log(data);
-            for(var i=0;i<data.length;i++){
+            for(var i=0;i<5;i++){
                 $("#alluser").append("<div class=\"row\"><div class=\"col-xs-1\">"+data[i].Id+"</div>"+
                 "<div class=\"col-xs-1\">"+data[i].Name+"</div>"+
                 "<div class=\"col-xs-2\">"+data[i].PhoneNumber+"</div>"+
@@ -90,7 +89,7 @@ $("#edit_save").click(function(){
             }
             for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
             {
-                $("#user_page").append("<option>"+i+"</option>")
+                $("#user_page").append("<option value=\""+i+"\">"+i+"</option>")
             }
         $("#user_all_page").text("共"+Math.ceil(data.length/5)+"页");
          }
@@ -125,6 +124,9 @@ $("#pakage_manage").click(function(){
          url:'http://localhost:11162/api/v1/package/all',
          type:'GET',
          dataType:'json',
+         data:{
+             pa:"1",
+         },
          success:function(data){
             for(var i=0;i<data.length;i++){
                 $("#allpackage").append("<div class=\"row\"><div class=\"col-xs-2\">"+data[i].Id+"</div>"+

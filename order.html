@@ -43,18 +43,18 @@
                             <div class="order_content">
                                 <div class="order_content_info">
                                     <label>请选择你所需要的服务：</label>
-                                    <select>
-                                        <option v-for="option in options" v-bind:value="option.value">
-                                            {{option.text}}
+                                    <select v-model="taocan_select">
+                                        <option v-for="option in options" v-bind:value="option.Name">
+                                            {{option.Name}}
                                         </option>
                                     </select>
                                 </div>
                                 <div class="order_content_info">
                                     <label>请选择预约理发师：</label>
-                                    <select>
-                                        <option v-for="barber in barbers" v-bind:value="barber.value">
-                                            {{barber.text}}
-                                            </option>
+                                    <select v-model="barber_select">
+                                        <option v-for="barber in barbers" v-bind:value="barber.Name">
+                                            {{barber.Name}}
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="order_content_info">
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="order_content_info">
                                     <div class="order_content_cancel">取消</div>
-                                    <div class="order_content_yuyue">预约</div>
+                                    <div class="order_content_yuyue" v-on:click="yuyue">预约</div>
                                 </div>
                             </div>
                     </div>
