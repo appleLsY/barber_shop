@@ -628,6 +628,77 @@ li{
   color: black;
 
 }
+.order_content_info input{
+  width: 150px;
+  height: 26px;
+}
+.canlender_choose{
+  width: 300px;
+  height: auto;
+  position: absolute;
+  z-index: 1;
+  margin: 0 auto;
+  margin-left: 50px;
+  color: white;
+  border-radius: 5px 5px 5px 5px;
+}
+.canlender_choose li{
+  display: inline;
+}
+.arrow{
+  padding: 50px;
+}
+.year{
+  background-color: #00B8EC;
+}
+.weekdays{
+  margin: 0;
+  padding: 5px 0;
+  background-color: #00B8EC;
+  display: flex;
+  flex-wrap: wrap;
+  color: #FFFFFF;
+  justify-content: space-around;
+}
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+}
+.days {
+    padding: 0;
+    background: #FFFFFF;
+    margin: 0;
+    justify-content: space-around;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 14.2%;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 1rem;
+    color: #000;
+}
+
+.days li .active {
+    padding: 6px 10px;
+    border-radius: 50%;
+    background: #00B8EC;
+    color: #fff;
+}
+
+.days li .other-month {
+    padding: 5px;
+    color: gainsboro;
+}
+
+.days li:hover {
+    background: #e1e1e1;
+}
+
 .order_content_info_price{
   width: 400px;
   height: 30px;
