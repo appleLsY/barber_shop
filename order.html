@@ -52,7 +52,7 @@
                                 <div class="order_content_info">
                                     <label>请选择预约理发师：</label>
                                     <select v-model="barber_select">
-                                        <option v-for="barber in barbers" v-bind:value="barber.Name">
+                                        <option v-for="barber in barbers" v-bind:value="barber.Id">
                                             {{barber.Name}}
                                         </option>
                                     </select>
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="order_content_info">
                                     <label>请选择支付方式：</label>
-                                    <select>
+                                    <select v-model="pay_method">
                                         <option v-for="pay in pays" v-bind:value="pay.value">
                                             {{pay.text}}
                                          </option>

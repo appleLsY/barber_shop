@@ -24,10 +24,10 @@ var vm=new Vue({
         start_date:"",
         endtime:"",
         spend_time:0,
+        pay_method:"0",
         pays:[
-            {text:"现金支付",value:"pay_one"},
-            {text:"微信支付",value:"pay_two"},
-            {text:"支付宝",value:"pay_three"},
+            {text:"线上支付",value:"0"},
+            {text:"线下支付",value:"1"},
         ],
         canlender:false,
         packa:[],
@@ -43,7 +43,7 @@ var vm=new Vue({
         getData:function (datas){
             this.$http.get("http://localhost:11162/api/v1/account/allBarber").then(function(data){
                 this.barbers=data.body;
-                this.barber_select=this.barbers[0].Name;
+                this.barber_select=this.barbers[0].Id;
             })
         },
         gettaocan:function(datas){
@@ -55,13 +55,30 @@ var vm=new Vue({
             })
         },
         yuyue:function(){
-            alert(this.barber_select);
+            this.$http.post("http://localhost:11162/api/v1/order",{
+                UserId:2,
+                BarberId:this.barber_select,
+                StartTime:this.start_date+" "+this.starttime,
+                Chanel:this.pay_method,
+                Packages:[
+                    {
+                        Id:this.package_select,
+                    }
+                ]
+            },{
+                    emulateJSON: true
+            }).then(function(data){
+                console.log(data);
+                alert("预约成功")
+            },function(dd){
+                alert(dd);
+            }
+            )
         },
         show_price:function(){
             alert(this.package_select);
             this.$http.get("http://localhost:11162/api/v1/package?id="+this.package_select).then(function(data){
                 this.packa=data.body;
-                console.log(this.packa)
                 this.price=this.packa.Price;
                 this.spend_time=this.packa.Timespan;
             })
@@ -148,6 +165,7 @@ var vm=new Vue({
             if(d<10) d = "0" + d;
             return y+"-"+m+"-"+d
         },
+        //返回类似10:00格式的字符串
         formathours:function(hour,minute){
             var h=hour;
             var m=minute;
