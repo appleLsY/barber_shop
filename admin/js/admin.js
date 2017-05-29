@@ -159,7 +159,11 @@ $("#order_manage").click(function(){
 
 //分享管理
 $("#share_manage").click(function(){
-
+    $.ajax({
+         url:'http://localhost:11162/api/v1/package/all',
+         type:'GET',
+         dataType:'json',
+    })
 })
 
 //店铺管理
