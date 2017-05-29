@@ -1,17 +1,20 @@
 var vm=new Vue({
     el:"#home",
     data:{
-        name:"haha",
-        phone:"18511709041",
-        email:"365889074@qq.com",
+        infomations:[],
+        name:"",
+        phone:"",
+        email:"",
         barbername:"",
+        introduce:"",
+        if_phone_error:false,
+        if_email_error:false,
+        phone_error:"",
+        email_error:"",
         readonly:true,
         isedit:false,
         noedit:true,
-        introduce:"我是一名有着15年的资深理发师，能够完成各种类型的发型",
-    },
-    created:function(){
-        this.barbername=this.name;
+        if_phone_error:false,
     },
     methods:{
         show:function(){
@@ -20,10 +23,63 @@ var vm=new Vue({
             this.readonly=false
         },
         save:function(){
-            alert("保存成功");
-            this.noedit=true;
-            this.isedit=false;
-            this.readonly=true
+            if(this.if_phone_error==false&&this.if_email_error==false)
+            {
+                this.$http.put("http://localhost:11162/api/v1/account",{
+                    Name:this.name,
+                    PhoneNumber:this.phone,
+                    Email:this.email,
+                    PersonalInfo:this.introduce,
+                },{emulateJSON: true}).then(function(data){
+                    console.log(data);
+                    this.name=data.body.Name;
+                    this.phone=data.body.PhoneNumber;
+                    this.email=data.body.Email;
+                    this.PersonalInfo=data.body.PersonalInfo;
+                })
+                this.noedit=true;
+                this.isedit=false;
+                this.readonly=true
+            }
+            else
+            {
+                alert("lalas");
+            }
+        },
+        phone_istrue:function(){
+              var telepehone = /^1\d{10}$/; //手机号的正则表达式
+              if(!telepehone.test(this.phone)){
+                  this.phone_error="请验证手机号";
+                  this.if_phone_error=true;
+              }
+              else
+              {
+                  this.if_phone_error=false;
+              }
+        },
+        email_istrue:function(){
+              var emai = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/; //邮箱的正则表达式
+              if(!emai.test(this.email)){
+                  this.if_email_error=true;
+                  this.email_error="请输入正确的邮箱格式";
+              }
+              else
+              {
+                  this.if_email_error=false;
+              }
+        },
+        get_info:function(){
+            this.$http.get("http://localhost:11162/api/v1/account?id="+12).then(function(data){
+                this.infomations=data.body;
+                this.name=this.infomations.Name;
+                this.barbername=this.name;
+                this.phone=this.infomations.PhoneNumber;
+                this.email=this.infomations.Email;
+                this.introduce=this.infomations.PersonalInfo;
+            })
         }
+    },
+    created:function(data){
+        this.get_info();
     }
 })

@@ -71,7 +71,7 @@ var vm=new Vue({
                 console.log(data);
                 alert("预约成功")
             },function(dd){
-                alert(dd);
+                alert(dd.message);
             }
             )
         },
