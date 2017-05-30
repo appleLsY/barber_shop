@@ -69,14 +69,21 @@ var vm=new Vue({
               }
         },
         get_info:function(){
-            this.$http.get("http://localhost:11162/api/v1/account?id="+12).then(function(data){
-                this.infomations=data.body;
-                this.name=this.infomations.Name;
-                this.barbername=this.name;
-                this.phone=this.infomations.PhoneNumber;
-                this.email=this.infomations.Email;
-                this.introduce=this.infomations.PersonalInfo;
-            })
+            if(localStorage.length!=0){
+                this.name=localStorage.getItem("username");
+                this.$http({
+                     method:'GET',
+                     headers:{token:localStorage.getItem("userId")},
+                     url:"http://localhost:11162/api/v1/account",
+                }).then(function(data){
+                    this.infomations=data.body;
+                    this.name=this.infomations.Name;
+                    this.barbername=this.name;
+                    this.phone=this.infomations.PhoneNumber;
+                    this.email=this.infomations.Email;
+                    this.introduce=this.infomations.PersonalInfo;
+                })
+            }
         }
     },
     created:function(data){

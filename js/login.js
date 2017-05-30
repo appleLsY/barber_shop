@@ -121,15 +121,24 @@
                 }, {
                     emulateJSON: true
                 }).then(function (res) {
-                    this.setCookie("account",this.usern,7);
-                    window.location.href="index.html"
+                    window.localStorage.setItem("userId",res.body.Token);
+                    window.localStorage.setItem("username",res.body.Name);
+                    if(res.body.Role.Id=='3'){
+                        window.location.href="index.html";
+                    }
+                    else if(res.Role.Id=='2')
+                    {
+                        window.location.href="lifashi/barber.html";
+                    }
+                    else{
+                        window.location.href="admin/admin.html";
+                    }
                 }, function () {
                     console.log('请求失败处理');
                     alert("登录失败")
                 })
           },
           setCookie:function(name,value,expires){
-              var cookie=encodeURIComponent(name)+"="+encodeURIComponent(value);  
                 if(expires instanceof Date){  
                     cookie+="; expires="+expires.toGMTString();  
                 }else{  
@@ -137,9 +146,6 @@
                     date.setTime(date.getTime()+expires*24*3600*1000);  
                     cookie+="; expires="+date.toGMTString();  
                 }            
-                //alert(cookie);
-                Document.cookie=cookie;
-                alert(Document.cookie);
             }
       }
   })

@@ -18,6 +18,7 @@ var vm=new Vue({
         article_content_three:"",
         barbername:"",
     },
+
     methods:{
         getAccount:function(){
             this.$http.get("http://localhost:11162/api/v1/announcement/all").then(function(data){
@@ -44,20 +45,38 @@ var vm=new Vue({
                 console.log(this.newBarbers)
             })
         },
-        getCookie:function(name){
-            var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        // getCookie:function(name){
+        //     var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
         
-            if(arr=Document.cookie.match(reg))
+        //     if(arr=Document.cookie.match(reg))
         
-                return unescape(arr[2]); 
-            else 
-                return null;        
-            },
+        //         return unescape(arr[2]); 
+        //     else 
+        //         return null;        
+        //     },
         show_barber:function(){
             window.location.href="barber.html";
-        }
+        },
+        getUser:function(){
+            if(window.localStorage.length!=0)
+            {
+                this.name=localStorage.getItem("username");
+                this.if_login=true;
+                this.login_in=false;
+            }
+            else
+            {
+                this.if_login=false;
+                this.login_in=true;
+            }
+        },
+        login_out:function(){
+            localStorage.clear();
+            window.location.href="login.html";
+        },
     },
     created:function(){
+        this.getUser();
         this.getAccount(); 
         this.getBarber();
         // alert("sadas");

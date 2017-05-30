@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>
+    </head>
+    <body>
+        <div class="banner-bg-one" id="home">
+            <div class="container">
+                <div class="header">
+                    <div class="logo">
+                            <a href="index.html"><h1>Fashion</h1><span>Change Your Hair Style<span></a>
+                    </div>
+                            
+                    <div class="top-nav">										 
+                            <label class="mobile_menu" for="mobile_menu">
+                            <span>Menu</span>
+                            </label>
+                        <ul class="nav">
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li class="dropdown1"><a class="active" href="order.html">美发预约</a>
+                                <ul class="dropdown2">
+                                        <li><a href="order.html">剪发</a></li>
+                                        <li><a href="order.html">烫发</a></li>
+                                        <li><a href="order.html">染发</a></li>
+                                        <li><a href="order.html">套餐</a></li>
+                                </ul>
+                            </li> 
+                            <li><a href="share.html">社区分享</a></li>   
+                            <li><a href="login.html">登录</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    </div>
+                    <div class="contents">
+                        <div class="content comWidth">
+                            <table class="table table-striped table-bordered table-hover table-responsive dat">
+                                <thead>
+                                    <th>理发师姓名</th>
+                                    <th>预约时间</th>
+                                    <th>套餐名称</th>
+                                    <th>花费时间</th>
+                                    <th>价格</th>
+                                    <th>操作</th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="order in allorders">
+                                        <td>{{order.UserId}}</td>
+                                        <td>{{order.StartTime}}</td>
+                                        <td>{{order.Packages.Name}}</td>
+                                        <td>{{order.Packages.TimeSpan}}</td>
+                                        <td>{{order.Packages.Price}}</td>
+                                        <td class="evaluation_link">服务<a href="StudentWriteEvaluation.html"><span>取消订单</span></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+        </div>
+	<div class="copyright">
+		<p>Copyright &copy; 2017 liushuyu</p>
+	</div>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.min.js"></script>
+    <script src="js/order.js"></script>
+    </body>
+</html>

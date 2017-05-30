@@ -26,10 +26,10 @@
                                 <a href="barber_share.html">查看分享</a>
                             </li>
                             <li>
-                                <a href="barber_info.html">haha</a>
+                                <a href="barber_info.html">{{name}}</a>
                             </li>
-                            <li>
-                                <a href="#">退出</a>
+                            <li v-on:click="login_out">
+                                <a>退出</a>
                             </li>
                         </ul>
                     </div>
@@ -47,11 +47,11 @@
                     </thead>
                     <tbody>
                         <tr v-for="order in allorders">
-                            <td>{{order.UserId}}</td>
+                            <td>{{order.UserName}}</td>
                             <td>{{order.StartTime}}</td>
-                            <td>套餐一</td>
-                            <td>30分钟</td>
-                            <td>50</td>
+                            <td>{{order.Packages[0].Name}}</td>
+                            <td>{{order.Packages[0].Timespan}}分钟</td>
+                            <td>{{order.Packages[0].Price}}</td>
                             <td class="evaluation_link">服务<a href="StudentWriteEvaluation.html"><span>开始服务</span></a></td>
                         </tr>
                     </tbody>

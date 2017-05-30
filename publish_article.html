@@ -8,47 +8,39 @@
         <link rel="stylesheet" type="text/css" href="css/styles/simditor.css" />
     </head>
     <body>
-        <div class="publish_article">
-            <div class="publish_all">
-                <div class="publish_tool">
-                    富文本编辑框
-                    <!--<textarea maxlength="58" onkeyup="check()" id="textarea_id"></textarea>-->
-                </div>
-                <div class="publish_click">
-                    <div class="publish_cancel">返回</div>
-                    <div class="publish_submit">确定</div>
+        <div id="home">
+            <div class="publish_article">
+                <div class="publish_all">
+                    <div class="publish_tool">
+                        <div class="publish_title">
+                            <h2>发表文章</h2>
+                        </div>
+                        <div class="publish_content">
+                            <textarea maxlength="60" onkeyup="check()" id="textarea_id" placeholder="请发表你所需要的文字(限60字)"></textarea>
+                        </div>
+                        <div class="publish_img">
+                            图片发表
+                        </div>
+                    </div>
+                    <div class="publish_click">
+                        <div class="publish_cancel">返回</div>
+                        <div class="publish_submit">确定</div>
+                    </div>
                 </div>
             </div>
+            <div class="copyright">
+                <p>Copyright &copy; 2017 liushuyu</p>
+            </div>
         </div>
-        <div class="copyright">
-            <p>Copyright &copy; 2017 liushuyu</p>
-        </div>
-        <script type="text/javascript" src="js/scripts/jquery.min.js"></script>
-        <script type="text/javascript" src="js/scripts/module.js"></script>
-        <script type="text/javascript" src="js/scripts/hotkeys.js"></script>
-        <script type="text/javascript" src="js/scripts/uploader.js"></script>
-        <script type="text/javascript" src="js/scripts/simditor.js"></script>
+        <script src="js/vue.js"></script>
+        <script src="js/vue-resource.min.js"></script>
+        <script src="js/publish.js"></script>
         <script type="text/javascript">
-    //     var editor = new Simditor({
-    //     textarea: $('#textarea_id'),
-    //     placeholder: '',
-    //     defaultImage: 'images/user.png',
-    //     params: {},
-    //     upload: false,
-    //     tabIndent: true,
-    //     toolbar: true,
-    //     toolbarFloat: true,
-    //     toolbarFloatOffset: 0,
-    //     toolbarHidden: false,
-    //     pasteImage: false,
-    //     cleanPaste: false,
-    // });
-    function check(){
-        var texts=document.getElementById("textarea_id").value;
-        if(texts.length>58){
-            alert("dashdas");
-        }
-
+            function check(){
+                var texts=document.getElementById("textarea_id").value;
+                if(texts.length>60){
+                    alert("输入字数太多了");
+                }
     }
     </script>
     </body>
