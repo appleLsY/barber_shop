@@ -84,7 +84,11 @@ var vm=new Vue({
                     this.introduce=this.infomations.PersonalInfo;
                 })
             }
-        }
+        },
+        login_out:function(){
+            localStorage.clear();
+            window.location.href="../login.html";
+        },
     },
     created:function(data){
         this.get_info();

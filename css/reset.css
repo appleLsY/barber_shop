@@ -20,6 +20,7 @@ a{text-decoration:none;color:#656565;}
 
 .fl{float: left;}
 .fr{float: right;}
+.fr li{cursor: pointer;}
 .hide{display: none;}
 .show{display: block;}
 .data_error{
@@ -27,4 +28,21 @@ a{text-decoration:none;color:#656565;}
     margin: 0 auto;
     text-align: right;
     margin-left: 180px;
+}
+.takeoff{
+  width: 1000px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.takeoff p{
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px 5px 5px 5px;
+  margin-bottom: 5px;
+  float: right;
+  border: 1px solid lightgrey;
+  background-color: lightblue;
 }

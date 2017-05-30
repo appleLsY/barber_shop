@@ -7,10 +7,11 @@
         <link href="../css/reset.css" rel="stylesheet">
         <link href="../css/barberIndex.css" rel="stylesheet">
         <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
     </head>
     <body>
         <div id="home">
-            <div class="header">
+            <div class="headerl">
                 <div class="headerBar comWidth">
                     <div class="logo fl"><img src="../images/barber.png" alt="TEASystem"/></div>
                     <div class="titleText fl" >lucky理发店</div>
@@ -21,9 +22,6 @@
                             </li>
                             <li>
                                 <a href="barber_time.html">时间安排</a>
-                            </li>
-                            <li>
-                                <a href="barber_share.html">查看分享</a>
                             </li>
                             <li>
                                 <a href="barber_info.html">{{name}}</a>
@@ -56,6 +54,20 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="page-bar">
+                <div class="page_divide">
+                    <ul>
+                        <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
+                        <li v-if="cur==1"><a class="banclick">上一页</a></li>
+                        <li v-for="index in indexs"  v-bind:class="{ 'active': cur == index}">
+                            <a v-on:click="btnClick(index)">{{ index }}</a>
+                        </li>
+                        <li v-if="cur!=all"><a v-on:click="cur++,pageClick()">下一页</a></li>
+                        <li v-if="cur == all"><a class="banclick">下一页</a></li>
+                        <li><a>共<i>{{all}}</i>页</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <script src="../js/jquery.min.js"></script>

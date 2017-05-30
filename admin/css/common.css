@@ -349,3 +349,26 @@ select {
 .right {
 	float: right;
 }
+/*店铺设置样式*/
+.show_shoptime{
+	width: 600px;
+	height: 240px;
+	margin-left: 180px;
+	margin-top: 50px;
+}
+.shop_time{
+	width: 500px;
+	margin: 0 auto;
+	height: 80px;
+	line-height: 80px;
+	margin-top: 30px;
+	text-align: center;
+}
+.shop_time input{
+	width: 150px;
+	height: 30px;
+}
+.edit{
+	margin-left: 600px;
+	margin-right: 50px;
+}

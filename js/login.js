@@ -126,7 +126,7 @@
                     if(res.body.Role.Id=='3'){
                         window.location.href="index.html";
                     }
-                    else if(res.Role.Id=='2')
+                    else if(res.body.Role.Id=='2')
                     {
                         window.location.href="lifashi/barber.html";
                     }

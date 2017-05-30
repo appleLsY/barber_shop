@@ -1,7 +1,15 @@
 //公告请求
 $(function() {
+    $(".shop_time input").attr('disabled', 'true');
+    $("#userName").text(localStorage.getItem("username"));
+    // $.ajax({
+    //     url:'http://localhost:11162/api/v1/announcement/all'
+    // });
 $.ajax({
      url: 'http://localhost:11162/api/v1/announcement/all',
+     headers:{
+         token:localStorage.getItem("userId"),
+     },
      type: 'GET',
      dataType: 'json',
      success: function (data) {
@@ -32,6 +40,9 @@ $.ajax({
      console.log(content);
      $.ajax({
          url:'http://localhost:11162/api/v1/announcement',
+         headers:{
+            token:localStorage.getItem("userId"),
+        },
          type:'POST',
          dataType: 'json',
          data:{
@@ -53,6 +64,9 @@ $("#edit_save").click(function(){
     console.log(edit_content);
     $.ajax({
         url:'http://localhost:11162/api/v1/announcement',
+        headers:{
+            token:localStorage.getItem("userId"),
+        },
         type:'PUT',
         dataType:'json',
         data:{
@@ -73,6 +87,9 @@ $("#edit_save").click(function(){
      $("#user_page").text("");
      $.ajax({
          url:'http://localhost:11162/api/v1/account/allBarber',
+         headers:{
+             token:localStorage.getItem("userId"),
+            },
          type:'GET',
          dataType:'json',
          success:function(data){
@@ -102,6 +119,9 @@ $("#edit_save").click(function(){
      var userinfo=$("#publish_user_personalinfo").val();
      $.ajax({
          url:'http://localhost:11162/api/v1/account/barber',
+         headers:{
+            token:localStorage.getItem("userId"),
+        },
          type:'POST',
          dataType:'json',
          data:{
@@ -122,11 +142,11 @@ $("#pakage_manage").click(function(){
      $("#package_page").text("");
      $.ajax({
          url:'http://localhost:11162/api/v1/package/all',
+         headers:{
+            token:localStorage.getItem("userId"),
+        },
          type:'GET',
          dataType:'json',
-         data:{
-             pa:"1",
-         },
          success:function(data){
             for(var i=0;i<data.length;i++){
                 $("#allpackage").append("<div class=\"row\"><div class=\"col-xs-2\">"+data[i].Id+"</div>"+
@@ -154,20 +174,90 @@ $("#pakage_manage").click(function(){
 
 //订单管理
 $("#order_manage").click(function(){
+    $("#allorder").html("");
+    $("#order_page").text("");
+     $.ajax({
+         url:'http://localhost:11162/api/v1/order/search',
+         headers:{
+            token:localStorage.getItem("userId"),
+        },
+         type:'GET',
+         dataType:'json',
+         success:function(data){
+             console.log(data);
+            for(var i=0;i<data.List.length;i++){
+                $("#allorder").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].OrderNo+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].UserName+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Name+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Timespan+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Price+"</div>"+
+                "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#revisePackage\">"+
+                "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
+                "删除"+"</button></div></div>"
+                )
+// onclick=\"show_user("+data[i].Id+")\"
+// onclick=\"del("+data[i].Id+")\"
+            }
+            for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
+            {
+                $("#order_page").append("<option>"+i+"</option>")
+            }
+        $("#all_order").text("共"+Math.ceil(data.length/5)+"页");
+         }
+     })
 
 })
 
 //分享管理
 $("#share_manage").click(function(){
-    $.ajax({
-         url:'http://localhost:11162/api/v1/package/all',
+    $("#allshare").html("");
+    $("#share_page").text("");
+     $.ajax({
+         url:'http://localhost:11162/api/v1/share/search',
+         headers:{
+            token:localStorage.getItem("userId"),
+        },
          type:'GET',
          dataType:'json',
-    })
+         success:function(data){
+             console.log(data);
+            for(var i=0;i<data.List.length;i++){
+                $("#allshare").append("<div class=\"row\"><div class=\"col-xs-1\">"+data.List[i].Id+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].UserId+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].CreatedOn+"</div>"+
+                "<div class=\"col-xs-5\">"+data.List[i].Content+"</div>"+
+                "<div class=\"col-xs-2\"><button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
+                "删除"+"</button></div></div>"
+                )
+// onclick=\"show_user("+data[i].Id+")\"
+// onclick=\"del("+data[i].Id+")\"
+            }
+            for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
+            {
+                $("#share_page").append("<option>"+i+"</option>")
+            }
+        $("#all_share").text("共"+Math.ceil(data.length/5)+"页");
+         }
+     })
 })
 
 //店铺管理
 $("#shopinfo_manage").click(function(){
     
+})
+
+//修改店铺消息
+$("#editTime").click(function(){
+    $(".shop_time input").removeAttr('disabled');
+})
+$("#cancelTime").click(function(){
+    $(".shop_time input").attr('disabled', 'true');
+    $("#shopinfo_manage").click();
+})
+
+
+$("#login_out").click(function(){
+    localStorage.clear();
+    window.location.href="../login.html";
 })
 }) ;

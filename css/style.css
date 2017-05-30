@@ -949,7 +949,7 @@ li{
 
 
 /*发表文章*/
-#home{
+#publish_home{
   background-color: lightgrey;
 }
 .publish_article{
@@ -1081,3 +1081,47 @@ li{
 
 
 /*上传档期*/
+.take_off{
+  width: 1000px;
+  height: 60px;
+}
+.take_off_content{
+  width: 500px;
+  float: left;
+  position: absolute;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-left: 120px;
+}
+.take_off_content input{
+  width: 150px;
+  border: 1px solid lightgrey;
+}
+.takeoff_button{
+  width: 400px;
+  height: 30px;
+  float: right;
+}
+.takeoff_click{
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  text-align: center;
+  border: 1px solid lightgrey;
+  border-radius: 5px 5px 5px 5px;
+  background-color: lightblue;
+  cursor: pointer;
+}
+.takeoff_concel{
+  width: 80px;
+  height: 30px;
+  margin-left: 50px;
+  line-height: 30px;
+  float: left;
+  text-align: center;
+  border: 1px solid lightgrey;
+  border-radius: 5px 5px 5px 5px;
+  background-color: lightblue;
+  cursor: pointer;
+}

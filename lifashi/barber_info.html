@@ -16,7 +16,7 @@
     </head>
     <body>
         <div id="home">
-            <div class="header">
+            <div class="headerl">
                 <div class="headerBar comWidth">
                     <div class="logo fl"><img src="../images/barber.png" alt="TEASystem"/></div>
                     <div class="titleText fl" >lucky理发店</div>
@@ -29,13 +29,10 @@
                                 <a href="barber_time.html">时间安排</a>
                             </li>
                             <li>
-                                <a href="barber_share.html">查看分享</a>
+                                <a href="barber_info.html">{{name}}</a>
                             </li>
-                            <li>
-                                <a href="barber_info.html">haha</a>
-                            </li>
-                            <li>
-                                <a href="barber_info">退出</a>
+                            <li v-on:click="login_out">
+                                <a>退出</a>
                             </li>
                         </ul>
                     </div>

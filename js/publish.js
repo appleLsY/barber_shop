@@ -1,3 +1,3 @@
 var vue=new Vue({
-    el:"#home",
+    el:"#publish_home",
 })
