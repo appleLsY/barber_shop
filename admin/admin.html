@@ -11,6 +11,7 @@
     <title>理发店后台管理系统</title>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/echarts.js"></script>
     <script>
         $(function () {
             $(".meun-item").click(function () {
@@ -102,7 +103,7 @@
                                 标题
                             </div>
                             <div class="col-xs-2">
-                               内容
+                                内容
                             </div>
                             <div class="col-xs-2">
                                 创建时间
@@ -129,7 +130,7 @@
                                 </select> 页
                             </li>
                             <li class="gray" id="all_page">
-                                
+
                             </li>
                             <li>
                                 <i class="glyphicon glyphicon-menu-left">
@@ -141,7 +142,7 @@
                             </li>
                         </ul>
                     </footer>
-                     <!--弹出添加用户窗口-->
+                    <!--弹出添加用户窗口-->
                     <div class="modal fade" id="addAnnouncement" role="dialog" aria-labelledby="gridSystemModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -158,12 +159,12 @@
                                                     <input class="form-control input-sm duiqi" id="sName" placeholder="">
                                                 </div>
                                             </div>
-                                              <div class="form-group">
+                                            <div class="form-group">
                                                 <label for="sLink" class="col-xs-3 control-label">内容：</label>
                                                 <div class="col-xs-6 ">
                                                     <textarea class="form-control input-sm duiqi" style="height:150px;" id="publish_content"></textarea>
                                                 </div>
-                                            </div>  
+                                            </div>
                                             <div class="form-group">
                                                 <label for="situation" class="col-xs-3 control-label">状态：</label>
                                                 <div class="col-xs-8">
@@ -199,13 +200,13 @@
                                     <div class="container-fluid">
                                         <form class="form-horizontal">
                                             <div class="form-group ">
-                                                <label for="sName" class="col-xs-3 control-label" >标题：</label>
+                                                <label for="sName" class="col-xs-3 control-label">标题：</label>
                                                 <div class="col-xs-8 ">
                                                     <input class="form-control input-sm duiqi" id="slName">
                                                 </div>
                                             </div>
-                                              <div class="form-group">
-                                                <label for="sLink" class="col-xs-3 control-label" >内容：</label>
+                                            <div class="form-group">
+                                                <label for="sLink" class="col-xs-3 control-label">内容：</label>
                                                 <div class="col-xs-6 ">
                                                     <textarea class="form-control input-sm duiqi" style="height:150px;" id="announce_content"></textarea>
                                                 </div>
@@ -221,7 +222,7 @@
                                             </div>
                                             <input value="" id="hide_announce_id" style="display:none;" />
                                         </form>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -301,7 +302,7 @@
                     <footer class="footer">
                         <ul class="pagination">
                             <li>
-                            <select id="user_page">
+                                <select id="user_page">
                             </select> 页
                             </li>
                             <li class="gray" id="user_all_page">
@@ -856,39 +857,8 @@
                         </div>
                     </div>
                     <div class="data-div">
-                        <div class="row tableHeader">
-                            <div class="col-xs-1 ">
-                                分享编号
-                            </div>
-                            <div class="col-xs-2">
-                                分享标题
-                            </div>
-                            <div class="col-xs-5">
-                                分享内容
-                            </div>
-                            <div class="col-xs-2">
-                                操作
-                            </div>
-                        </div>
-                        <div class="tablebody">
-
-                            <div class="row">
-                                <div class="col-xs-1 ">
-                                    1
-                                </div>
-                                <div class="col-xs-2">
-                                    啦啦啦
-                                </div>
-                                <div class="col-xs-5">
-                                    很满意
-                                </div>
-                                <div class="col-xs-2">
-                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteUser">删除</button>
-                                </div>
-                            </div>
-
-                        </div>
-
+                        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                        <div id="main" style="width: 600px;height:400px;"></div>
                     </div>
                     <!--页码块-->
                     <footer class="footer">
@@ -1058,46 +1028,48 @@
     <script src="js/admin.js"></script>
     <!-- this page specific inline scripts -->
     <script>
-        $("#announcement_page").change(function(){
-            var dt=$("#announcement_page").val();
+        $("#announcement_page").change(function () {
+            var dt = $("#announcement_page").val();
             alert(dt);
         })
-        
+
         //公告管理
-        function show_announcement(data){
+        function show_announcement(data) {
             $("#hide_announce_id").val(data);
             $.ajax({
-                url:'http://localhost:11162/api/v1/announcement?id='+data,
-                type:'GET',
+                url: 'http://localhost:11162/api/v1/announcement?id=' + data,
+                type: 'GET',
                 dataType: 'json',
-                success:function(result){
+                success: function (result) {
                     $("#slName").val(result.Title);
                     $("#announce_content").text(result.Content);
                 }
             })
         }
-        function del(data){
+
+        function del(data) {
             $("#del_announce").val(data);
         }
-        function del_announcement(data){
+
+        function del_announcement(data) {
             $.ajax({
-                url:'http://localhost:11162/api/v1/announcement?id='+data,
-                type:'DELETE',
-                dataType:'json',
-                success:function(result){
+                url: 'http://localhost:11162/api/v1/announcement?id=' + data,
+                type: 'DELETE',
+                dataType: 'json',
+                success: function (result) {
                     alert("删除成功");
                     window.location.reload();
                 }
             })
         }
         //用户管理
-        function show_user(data){
+        function show_user(data) {
             $("#edit_user").val(data);
             $.ajax({
-                url:'http://localhost:11162/api/v1/account?id='+data,
-                type:'GET',
+                url: 'http://localhost:11162/api/v1/account?id=' + data,
+                type: 'GET',
                 dataType: 'json',
-                success:function(result){
+                success: function (result) {
                     console.log(result);
                     $("#edit_user_name").val(result.Name);
                     $("#edit_user_phone").val(result.PhoneNumber);
@@ -1106,10 +1078,12 @@
                 }
             })
         }
-        function del_user(data){
+
+        function del_user(data) {
             $("#del_user").val(data);
         }
-        function delete_user(data){
+
+        function delete_user(data) {
             // $.ajax({
             //     url:'http://localhost:11162/api/v1/announcement?id='+data,
             //     type:'DELETE',
@@ -1121,29 +1095,77 @@
             // })
         }
         //用户修改保存
-        function save_edit_user(data){
-           var editname=$("#edit_user_name").val();
-            var editphone=$("#edit_user_phone").val();
-            var editemail=$("#edit_user_email").val();
+        function save_edit_user(data) {
+            var editname = $("#edit_user_name").val();
+            var editphone = $("#edit_user_phone").val();
+            var editemail = $("#edit_user_email").val();
             console.log(editemail);
-            var editpersonalinfo=$("#edit_user_personalinfo").val();
+            var editpersonalinfo = $("#edit_user_personalinfo").val();
             $.ajax({
-                url:'http://localhost:11162/api/v1/account',
-                type:'PUT',
-                dataType:'json',
-                data:{
-                    Id:data,
-                    Name:editname,
-                    PhoneNumber:editphone,
-                    Email:editemail,
-                    PersonalInfo:editpersonalinfo,
+                url: 'http://localhost:11162/api/v1/account',
+                type: 'PUT',
+                dataType: 'json',
+                data: {
+                    Id: data,
+                    Name: editname,
+                    PhoneNumber: editphone,
+                    Email: editemail,
+                    PersonalInfo: editpersonalinfo,
                 },
-                success:function(result){
+                success: function (result) {
                     alert("修改成功");
                     $("#user_manage").click();
                 }
             })
         }
+    </script>
+    //统计分析
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '日登陆统计',
+                subtext: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['登陆人数']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    magicType: {
+                        show: true,
+                        type: ['stack', 'tiled']
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                    name: '登陆人数',
+                    type: 'line',
+                    smooth: true,
+                    data: [10, 12, 21, 54, 50, 50, 60]
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
     </script>
 </body>
 
