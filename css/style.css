@@ -836,7 +836,7 @@ li{
   float: right;
 }
 .look{
-  width: 150px;
+  width: 130px;
   height: 30px;
   line-height: 30px;
   background-color: #efdfdf;
@@ -847,7 +847,7 @@ li{
   cursor: pointer;
 }
 .publish_by_one{
-  width: 50px;
+  width: 40px;
   height: 30px;
   line-height: 30px;
   text-align: center;
@@ -964,7 +964,7 @@ li{
 .publish_tool{
   width: 80%;
   margin: 0 auto;
-  height: 400px;
+  height: 500px;
 }
 .publish_click{
   width: 50%;
@@ -972,6 +972,7 @@ li{
   height: 36px;
   margin-right: 10px;
   margin-top: 10px;
+  clear: both;
 }
 .publish_cancel{
   width: 80px;
@@ -1008,18 +1009,18 @@ li{
 }
 .publish_content{
   width: 450px;
-  height: 150px;
+  height: 100px;
   margin: 0 auto;
 }
 .publish_img{
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 450px;
-  height: 100px;
+  height: 350px;
 }
 #textarea_id{
   width: 450px;
-  height: 150px;
+  height: 80px;
 }
 
 
@@ -1063,8 +1064,8 @@ li{
   float: left;
 }
 
-/*查看自己预约的信息*/
-.contents{
+/*顾客查看自己预约的信息*/
+.user_contents{
   width: 1000px;
   height: 300px;
   margin: 0 auto;

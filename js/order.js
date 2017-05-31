@@ -70,6 +70,7 @@ var vm=new Vue({
             }).then(function(data){
                 console.log(data);
                 alert("预约成功")
+                window.location.href=""
             },function(dd){
                 alert(dd.message);
             }

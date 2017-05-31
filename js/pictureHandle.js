@@ -47,11 +47,16 @@ $(function(){
                                 $.ajax({
                                     url:'http://localhost:11162/api/v1/share/upload?id=1',
                                     type:'POST',
-                                    dataType: 'multipart/form-data',
+                                    dataType: 'text',
                                     // 告诉jQuery不要去设置Content-Type请求头
                                     data: $('#imgOne').val(),
                                     success:function(data){
-                                        alert(data.msg);
+                                        console.log(data);
+                                        $("#img_url").val(data);
+                                    },
+                                    error:function(data){
+                                        console.log(data);
+                                        alert("asdsd");
                                     }
                                 });
                             });

@@ -59,6 +59,8 @@ $("#edit_save").click(function(){
     var edit_title=$("#slName").val();
     var edit_content=$("#announce_content").val();
     var edit_id=$("#hide_announce_id").val();
+    var value  = $('input[name="situation"]:checked').val(); //获取被选中Radio的Value值
+    alert(value);
     alert(edit_id);
     console.log(edit_title);
     console.log(edit_content);
@@ -72,7 +74,8 @@ $("#edit_save").click(function(){
         data:{
             Id:edit_id,
             Title:edit_title,
-            Content:edit_content
+            Content:edit_content,
+            IsEnable:value,
         },
         success:function(data){
             alert("修改成功")
