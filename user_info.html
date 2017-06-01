@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/reset.css" rel="stylesheet">
+        <link href="css/barberIndex.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.easydropdown.js"></script>
+        <link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>
+    </head>
+    <body>
+        <div class="banner-bg-one" id="home">
+            <div class="container">
+                <div class="header">
+                    <div class="logo">
+                            <a href="index.html"><h1>Fashion</h1><span>Change Your Hair Style<span></a>
+                    </div>
+                    <div class="top-nav">										 
+                            <label class="mobile_menu" for="mobile_menu">
+                            <span>Menu</span>
+                            </label>
+                        <ul class="nav">
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">关于我们</a></li>
+                            <li class="dropdown1"><a href="order.html">美发预约</a>
+                            </li> 
+                            <li><a href="share.html">社区分享</a></li>   
+							<li><a class="active" href="user_info.html">{{name}}</a></li>
+							<li v-on:click="login_out"><a>退出</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    </div>
+                    <div class="contents">
+                        <div class="look_order" v-on:click="look_share">
+                            查看发表信息
+                        </div>
+                        <div class="look_order" v-on:click="look_order">
+                            查看预约信息
+                        </div>
+                        <div class="look_order" v-on:click="look_info">
+                            修改个人信息
+                        </div>
+                        <div class="content comWidth">
+                            <div class="user_info">
+                                <input v-model="userid" style="display: none" />
+                                <div class="barber_user_info">
+                                    <img src="images/user_two.png" alt="" />
+                                    <label>用户姓名</label>
+                                    <input v-model="username" v-bind:readonly="readonly" class="noedit" v-bind:class="{'isedit':isedit,'noedit':noedit}" />
+                                </div>
+                                <div class="barber_user_info">
+                                    <img src="images/phone.png" alt="" />
+                                    <label>手机号码</label>
+                                    <input v-model="phone" v-bind:readonly="readonly" v-on:blur="phone_istrue" v-bind:class="{'isedit':isedit,'noedit':noedit}" />
+                                </div>
+                                <div class="barber_user_info">
+                                    <input v-if="if_phone_error" v-model="phone_error" v-bind:class="{'data_error':if_phone_error}" />
+                                </div>
+                                <div class="barber_user_info">
+                                    <img src="images/email.png" alt="" />
+                                    <label>邮箱地址</label>
+                                    <input v-model="email" v-bind:readonly="readonly" v-on:blur="email_istrue" v-bind:class="{'isedit':isedit,'noedit':noedit}"/>
+                                </div>
+                                <div class="barber_user_info">
+                                    <input v-if="if_email_error" v-model="email_error" v-bind:class="{'data_error':if_email_error}" />
+                                </div>
+                                <div class="barber_user_info barber_introduce">
+                                    <img src="images/introduce.png" alt="" />
+                                    <label>个人介绍</label>
+                                    <textarea v-model="introduce" v-bind:readonly="readonly" v-bind:class="{'istext':isedit,'notext':noedit}">
+                                    </textarea>
+                                </div>
+                                <div class="barber_user_info">
+                                    <div class="edit" v-on:click="cancel">取消</div>
+                                    <div class="queren" v-on:click="save" v-if="edit_qued">确认</div>
+                                    <div class="queren" v-on:click="show" v-if="edit_info">修改</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright &copy; 2017 liushuyu</p>
+        </div>
+        <script src="js/vue.js"></script>
+        <script src="js/vue-resource.min.js"></script>
+        <script src="js/user_info.js"></script>
+    </body>
+</html>

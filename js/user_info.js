@@ -3,11 +3,12 @@ var vm=new Vue({
     data:{
         infomations:[],
         name:"",
+        username:'',
         phone:"",
         email:"",
-        barbername:"",
+        username:"",
         introduce:"",
-        barberid:"",
+        userid:"",
         if_phone_error:false,
         if_email_error:false,
         phone_error:"",
@@ -16,19 +17,35 @@ var vm=new Vue({
         isedit:false,
         noedit:true,
         if_phone_error:false,
+        edit_info:true,
+        edit_qued:false,
     },
     methods:{
         show:function(){
+            this.edit_info=false;
+            this.edit_qued=true;
             this.noedit=false;
             this.isedit=true;
             this.readonly=false
+        },
+        look_order:function(){
+            window.location.href="look_my_order.html";
+        },
+        look_share:function(){
+            window.location.href="look_my_share.html";
+        },
+        look_info:function(){
+            window.location.href="user_info.html";
+        },
+        cancel:function(){
+            window.location.reload();
         },
         save:function(){
             if(this.if_phone_error==false&&this.if_email_error==false)
             {
                 this.$http.put('http://localhost:11162/api/v1/account',{
-                        Id:this.barberid,
-                        Name:this.name,
+                        Id:this.userid,
+                        Name:this.username,
                         PhoneNumber:this.phone,
                         Email:this.email,
                         PersonalInfo:this.introduce,
@@ -83,8 +100,8 @@ var vm=new Vue({
                 }).then(function(data){
                     this.infomations=data.body;
                     console.log(this.infomations);
-                    this.barberid=this.infomations.Id;
-                    this.name=this.infomations.Name;
+                    this.userid=this.infomations.Id;
+                    this.username=this.infomations.Name;
                     this.barbername=this.name;
                     this.phone=this.infomations.PhoneNumber;
                     this.email=this.infomations.Email;
@@ -94,10 +111,14 @@ var vm=new Vue({
                     alert(res.message);
                 })
             }
+            else{
+                alert("请先登录!");
+                window.location.href="login.html";
+            }
         },
         login_out:function(){
             localStorage.clear();
-            window.location.href="../login.html";
+            window.location.href="login.html";
         },
     },
     created:function(data){

@@ -37,10 +37,25 @@ var vm=new Vue({
         currentWeek: 1,
         days: [],
         hours:[],
-
+        name:'',
+        login_in:true,
+        if_login:false,
     },
     methods:{
-        getData:function (datas){
+        user_login:function(){
+            if(window.localStorage.length!=0)
+            {
+                this.name=localStorage.getItem("username");
+                this.login_in=false;
+                this.if_login=true;
+            }
+            else
+            {
+                alert("请先登录!");
+                window.location.href="login.html";
+            }
+        },
+        getData:function (){
             this.$http.get("http://localhost:11162/api/v1/account/allBarber").then(function(data){
                 this.barbers=data.body;
                 this.barber_select=this.barbers[0].Id;
@@ -103,7 +118,10 @@ var vm=new Vue({
             else
                 this.canlender=true;
         },
-
+        login_out:function(){
+            localStorage.clear();
+            window.location.href="login.html";
+        },
 
         //选择日期
         initData: function(cur) {
@@ -177,6 +195,7 @@ var vm=new Vue({
         },
     },
     created:function(){
+        this.user_login();
         this.getData();
         this.gettaocan();
         this.initData(null);

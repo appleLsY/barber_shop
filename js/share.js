@@ -1,6 +1,9 @@
 var pageBar = new Vue({
     el: '#home',
     data: {
+        login_in:true,
+        if_login:false,
+        look_my:false,
         all:5,
         pages:[],
         len:3,//页面展示公告的数量
@@ -12,28 +15,11 @@ var pageBar = new Vue({
         search_name:"",
         async:false,//是否请求服务器端的数据
         articles:[ //分享文章
-        {name:"hello1",photo:"images/user_share_one.png",share_image:["images/google.png","images/god2.jpg"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello2",photo:"images/user_share_one.png",share_image:["images/google.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello3",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello4",photo:"images/user_share_one.png",share_image:["images/god2.jpg"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello5",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello6",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello7",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello8",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello9",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello10",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello11",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello12",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello13",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello14",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello15",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello16",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello17",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
-        {name:"hello18",photo:"images/user_share_one.png",share_image:["images/google.png","images/email.png"],content:"我很喜欢这个洗发师，特别亲切，能够给你提出很多值得你尝试的意见，都是很中肯的意见，赞赞赞"},
         ],
         newData:[],
         newPhoto:[],
         activeNum:0,
+        name:'',
     },
     methods:{
         //获取页码数量
@@ -52,29 +38,30 @@ var pageBar = new Vue({
         },
         //页码变化获取数据
         getData:function(datas){
-            this.newData=[];
-            let len=this.len;
-            var pageNum=datas-1;
-            for(let i=pageNum*len;i<(pageNum*len+len);i++){
-                this.articles[i]!==undefined?this.newData.push(this.articles[i]):'';
-                console.log(this.newData);
+            if(window.localStorage.length!=0){
+                this.if_login=true;
+                this.login_in=false;
+                this.name=localStorage.getItem("username");
+                this.look_my=true;
             }
-            // this.$http.get("http://localhost:11162/api/v1/announcement/all").then(function(data){
-            //     this.articles=data.body;
-            //     //console.log(this.articles);
-            //     for(var i=0; i<this.articles.length;i++)
-            //     {
-            //         console.log(this.articles[i].Title);
-            //     }
-            //     this.newData=[];
-            //     let len = this.len;
-            //     var pageNum = datas - 1;
-            //     for (let i = pageNum * len; i < (pageNum * len + len); i++) {
-            //         this.articles[i] !== undefined ? this.newData.push(this.articles[i]) : '';
-            //         console.log(this.newData);
-            //     }
-
-            // })
+            else{
+                this.if_login=false;
+                this.login_in=true;
+                this.look_my=false;
+            }
+            this.$http({
+                     method:'GET',
+                     url:"http://localhost:11162/api/v1/share/search",
+            }).then(function(data){
+                this.articles=data.body.List;
+                this.newData=[];
+                let len=this.len;
+                var pageNum=datas-1;
+                for (let i = pageNum * len; i < (pageNum * len + len); i++) {
+                 this.articles[i] !== undefined ? this.newData.push(this.articles[i]) : '';
+                 console.log(this.newData);
+             }                
+            })
         },
         btnClick: function(data){//页码点击事件
             if(data != this.cur){
@@ -88,7 +75,30 @@ var pageBar = new Vue({
             this.getData(this.cur);
         },
         publish:function(){
-            window.location.href="publish_article.html"
+            if(window.localStorage.length!=0){
+                window.location.href="publish_article.html";
+            }
+            else
+            {
+                alert("请先登录再发表");
+                window.location.href="login.html";
+            }
+        },
+        search_share:function(datas){
+            this.articles=[];
+            this.$http({
+                method:'GET',
+                headers:{token:localStorage.getItem("userId")},
+                url:'http://localhost:11162/api/v1/share/search?keyWord='+this.search_name,
+            }).then(function(data){
+                this.articles=data.body.List;
+                this.newData=[];
+                let len=this.len;
+                var pageNum=datas-1;
+                for (let i = pageNum * len; i < (pageNum * len + len); i++) {
+                 this.articles[i] !== undefined ? this.newData.push(this.articles[i]) : '';
+                }
+            })
         },
         show:function(image_index){
             alert(image_index);
@@ -104,7 +114,14 @@ var pageBar = new Vue({
                 this.min=true;
                 this.max=false;
             }
-        }
+        },
+        return_index:function(){
+            window.location.href="index.html";
+        },
+        login_out:function(){
+            localStorage.clear();
+            window.location.href="login.html";
+        },
     },
     watch: {
         cur: function(oldValue , newValue){
@@ -144,3 +161,4 @@ var pageBar = new Vue({
         },
     }
 })
+

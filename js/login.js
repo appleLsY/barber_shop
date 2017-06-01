@@ -138,14 +138,5 @@
                     alert("登录失败")
                 })
           },
-          setCookie:function(name,value,expires){
-                if(expires instanceof Date){  
-                    cookie+="; expires="+expires.toGMTString();  
-                }else{  
-                    var date=new Date();  
-                    date.setTime(date.getTime()+expires*24*3600*1000);  
-                    cookie+="; expires="+date.toGMTString();  
-                }            
-            }
       }
   })

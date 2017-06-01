@@ -15,7 +15,6 @@
                     <div class="logo">
                             <a href="index.html"><h1>Fashion</h1><span>Change Your Hair Style<span></a>
                     </div>
-                            
                     <div class="top-nav">										 
                             <label class="mobile_menu" for="mobile_menu">
                             <span>Menu</span>
@@ -26,7 +25,8 @@
                             <li class="dropdown1"><a class="active" href="order.html">美发预约</a>
                             </li> 
                             <li><a href="share.html">社区分享</a></li>   
-                            <li><a href="login.html">登录</a></li>
+							<li><a href="user_info.html">{{name}}</a></li>
+							<li v-on:click="login_out"><a>退出</a></li>
                         </ul>
                     </div>
                     <div class="clearfix">

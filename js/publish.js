@@ -5,6 +5,12 @@ var vue=new Vue({
         img_url:"",
     },
     methods:{
+        user_login:function(){
+            if(window.localStorage.length==0){
+                alert("请先登录");
+                window.location.href="login.html";
+            }
+        },
         return_publish:function(){
             window.location.href="share.html"
         },
@@ -13,5 +19,8 @@ var vue=new Vue({
             alert(this.img_url);
             alert("保存成功");
         }
+    },
+    created:function(){
+        this.user_login();
     }
 })

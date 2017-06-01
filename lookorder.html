@@ -26,7 +26,9 @@
                             <li class="dropdown1"><a class="active" href="order.html">美发预约</a>
                             </li> 
                             <li><a href="share.html">社区分享</a></li>
-                            <li><a href="login.html">登录</a></li>
+							<li v-if="login_in"><a href="login.html">登录</a></li>
+							<li v-if="if_login"><a href="user_info.html">{{name}}</a></li>
+							<li v-if="if_login" v-on:click="login_out"><a>退出</a></li>
                         </ul>
                     </div>
                     <div class="clearfix">

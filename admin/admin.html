@@ -68,6 +68,7 @@
             <div id="personInfor">
                 <p id="userName"></p>
                 <p><span id="userEmail">531122545@qq.com</span></p>
+                <p><span id="userPhone">15826418364</span></p>
                 <p id="login_out">
                     <a>退出登录</a>
                 </p>
@@ -1028,6 +1029,15 @@
     <script src="js/admin.js"></script>
     <!-- this page specific inline scripts -->
     <script>
+        window.onbeforeunload=queren;
+        window.onunload=clear;
+        function queren(){
+            alert("是否确认离开")
+        }
+        function clear(){
+            localStorage.clear();
+            alert("欢迎下次光临");
+        }
         $("#announcement_page").change(function () {
             var dt = $("#announcement_page").val();
             alert(dt);

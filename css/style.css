@@ -501,6 +501,16 @@ color:#00b29f;
   text-align: center;
   cursor: pointer;
 }
+.return_page1{
+  width: 50px;
+  height: 40px;
+  float: right;
+  line-height: 40px;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+}
 .page_divide{
   width: 100%;
   height: 36px;
@@ -794,13 +804,13 @@ li{
   background: transparent; /*input背景透明*/
 }
 .istext{
+  border: 1px solid lightgrey;
   width: 200px;
   height: 80px;
   font-size: 14px;
   margin-left: 20px;
   float: right;
   margin-right: 10.5%;
-  background: transparent; /*input背景透明*/
 }
 .edit{
   width: 80px;
@@ -830,9 +840,8 @@ li{
   margin: 0 auto;
 }
 .publish{
-  width: 60%;
+  width: 520px;
   height: 80px;
-  line-height: 80px;
   float: right;
 }
 .look{
@@ -841,10 +850,15 @@ li{
   line-height: 30px;
   background-color: #efdfdf;
   text-align: center;
-  margin: 10px 0 0 60px;
   float: left;
+  margin-top: 10px;
   border-radius: 5px 5px 5px 5px;
   cursor: pointer;
+}
+.publish_both{
+  width: 300px;
+  height: 40px;
+  float: right;
 }
 .publish_by_one{
   width: 40px;
@@ -852,7 +866,7 @@ li{
   line-height: 30px;
   text-align: center;
   background-color: #efdfdf;
-  margin: 10px 0 0 50px;
+  margin: 10px 0 0 0;
   float: left;
   border-radius: 5px 5px 5px 5px;
   cursor: pointer;
@@ -860,8 +874,8 @@ li{
 .search_article{
   height: 40px;
   line-height: 40px;
-  margin: 5px 0 0 50px;
-  float: left;
+  margin: 5px 0 0 0;
+  float: right;
 }
 .search_article input{
   width: 150px;
@@ -1077,7 +1091,19 @@ li{
 }
 
 /*查看预约信息*/
-
+.look_order{
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  float: right;
+  margin-right: 100px;
+  color: white;
+  background-color: #1296db;
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+}
 
 
 /*上传档期*/
@@ -1124,4 +1150,16 @@ li{
   border-radius: 5px 5px 5px 5px;
   background-color: lightblue;
   cursor: pointer;
+}
+
+/*用户个人信息*/
+.user_info{
+  width: 600px;
+  height: 260px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -300px;
+  margin-top: -130px;         /*将div垂直居中的展示在大的div里面*/
+  color: white;
 }
