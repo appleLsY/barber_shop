@@ -1,10 +1,13 @@
 //公告请求
 $(function() {
     $(".shop_time input").attr('disabled', 'true');
-    $("#userName").text(localStorage.getItem("username"));
+    console.log(localStorage.getItem("username"));
     // $.ajax({
     //     url:'http://localhost:11162/api/v1/announcement/all'
     // });
+    if(localStorage.length!=0){
+        $("#userName").text(localStorage.getItem("username"));
+    }
 $.ajax({
      url: 'http://localhost:11162/api/v1/announcement/all',
      headers:{
@@ -13,7 +16,7 @@ $.ajax({
      type: 'GET',
      dataType: 'json',
      success: function (data) {
-         for(var i=0;i<data.length;i++){
+         for(var i=0;i<5;i++){
              var newcontent=(data[i].Content).substring(0,8);
              $("#account").append("<div class=\"row\"><div class=\"col-xs-2\">"+data[i].Id+"</div>"+
              "<div class=\"col-xs-2\">"+data[i].Title+"</div>"+
@@ -60,8 +63,6 @@ $("#edit_save").click(function(){
     var edit_content=$("#announce_content").val();
     var edit_id=$("#hide_announce_id").val();
     var value  = $('input[name="situation"]:checked').val(); //获取被选中Radio的Value值
-    alert(value);
-    alert(edit_id);
     console.log(edit_title);
     console.log(edit_content);
     $.ajax({
@@ -78,7 +79,6 @@ $("#edit_save").click(function(){
             IsEnable:value,
         },
         success:function(data){
-            alert("修改成功")
              window.location.reload();
          }
     })
@@ -89,7 +89,7 @@ $("#edit_save").click(function(){
      $("#alluser").html("");
      $("#user_page").text("");
      $.ajax({
-         url:'http://localhost:11162/api/v1/account/allBarber',
+         url:'http://localhost:11162/api/v1/account/search',
          headers:{
              token:localStorage.getItem("userId"),
             },
@@ -97,21 +97,23 @@ $("#edit_save").click(function(){
          dataType:'json',
          success:function(data){
             for(var i=0;i<5;i++){
-                $("#alluser").append("<div class=\"row\"><div class=\"col-xs-1\">"+data[i].Id+"</div>"+
-                "<div class=\"col-xs-1\">"+data[i].Name+"</div>"+
-                "<div class=\"col-xs-2\">"+data[i].PhoneNumber+"</div>"+
-                "<div class=\"col-xs-2\">"+data[i].Email+"</div>"+
-                "<div class=\"col-xs-4\">"+data[i].PersonalInfo+"</div>"+
-                "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#changeChar\" onclick=\"show_user("+data[i].Id+")\">"+
-                "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteChar\" onclick=\"del_user("+data[i].Id+")\">"+
-                "删除"+"</button></div></div>"
+                var N=data.List[i].Name==null?"":data.List[i].Name;
+                var P=data.List[i].PhoneNumber==null?"":data.List[i].PhoneNumber;
+                var E=data.List[i].Email==null?"":data.List[i].Email;
+                var I=data.List[i].PersonalInfo==null?"":data.List[i].PersonalInfo;
+                $("#alluser").append("<div class=\"row\"><div class=\"col-xs-1\">"+data.List[i].Id+"</div>"+
+                "<div class=\"col-xs-2\">"+N+"</div>"+
+                "<div class=\"col-xs-2\">"+P+"</div>"+
+                "<div class=\"col-xs-2\">"+E+"</div>"+
+                "<div class=\"col-xs-5\">"+I+"</div>"+
+                "</div>"
                 )
             }
-            for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
+            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
             {
                 $("#user_page").append("<option value=\""+i+"\">"+i+"</option>")
             }
-        $("#user_all_page").text("共"+Math.ceil(data.length/5)+"页");
+        $("#user_all_page").text("共"+Math.ceil(data.RecordCount/5)+"页");
          }
      })
  })
@@ -157,7 +159,7 @@ $("#pakage_manage").click(function(){
                 "<div class=\"col-xs-2\">"+data[i].Description+"</div>"+
                 "<div class=\"col-xs-2\">"+data[i].Timespan+"</div>"+
                 "<div class=\"col-xs-2\">"+data[i].Price+"</div>"+
-                "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#revisePackage\">"+
+                "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#revisePackage\" onclick=\"show_package("+data[i].Id+")\">"+
                 "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
                 "删除"+"</button></div></div>"
                 )
@@ -173,7 +175,31 @@ $("#pakage_manage").click(function(){
      })
 
 })
-
+ $("#save_package").click(function(){
+     var id=$("#hide_package_id").val();
+     var packname=$("#package_name").val();
+     var packcontent=$("#package_content").val();
+     var packtime=$("#package_time").val();
+     var packprice=$("#package_price").val();
+     $.ajax({
+         url:'http://localhost:11162/api/v1/package',
+         headers:{
+            token:localStorage.getItem("userId"),
+        },
+         type:'PUT',
+         dataType:'json',
+         data:{
+             Id:id,
+             Name:packname,
+             Timespan:packtime,
+             Price:packprice,
+             Description:packcontent,
+         },
+         success:function(data){
+             $("#pakage_manage").click();
+         }
+     })
+ })
 
 //订单管理
 $("#order_manage").click(function(){
@@ -192,20 +218,17 @@ $("#order_manage").click(function(){
                 $("#allorder").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].OrderNo+"</div>"+
                 "<div class=\"col-xs-2\">"+data.List[i].UserName+"</div>"+
                 "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Name+"</div>"+
+                "<div class=\"col-xs-3\">"+data.List[i].Packages[0].Description+"</div>"+
                 "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Timespan+"</div>"+
-                "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Price+"</div>"+
-                "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#revisePackage\">"+
-                "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
-                "删除"+"</button></div></div>"
+                "<div class=\"col-xs-1\">"+data.List[i].Packages[0].Price+"</div>"+
+                "</div>"
                 )
-// onclick=\"show_user("+data[i].Id+")\"
-// onclick=\"del("+data[i].Id+")\"
             }
-            for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
+            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
             {
                 $("#order_page").append("<option>"+i+"</option>")
             }
-        $("#all_order").text("共"+Math.ceil(data.length/5)+"页");
+        $("#all_order").text("共"+Math.ceil(data.RecordCount/5)+"页");
          }
      })
 
@@ -226,20 +249,20 @@ $("#share_manage").click(function(){
              console.log(data);
             for(var i=0;i<data.List.length;i++){
                 $("#allshare").append("<div class=\"row\"><div class=\"col-xs-1\">"+data.List[i].Id+"</div>"+
-                "<div class=\"col-xs-2\">"+data.List[i].UserId+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].User.Name+"</div>"+
                 "<div class=\"col-xs-2\">"+data.List[i].CreatedOn+"</div>"+
                 "<div class=\"col-xs-5\">"+data.List[i].Content+"</div>"+
-                "<div class=\"col-xs-2\"><button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
+                "<div class=\"col-xs-2\"><button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteShare\" onclick=\"del_share("+data.List[i].Id+")\">"+
                 "删除"+"</button></div></div>"
                 )
 // onclick=\"show_user("+data[i].Id+")\"
 // onclick=\"del("+data[i].Id+")\"
             }
-            for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
+            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
             {
                 $("#share_page").append("<option>"+i+"</option>")
             }
-        $("#all_share").text("共"+Math.ceil(data.length/5)+"页");
+        $("#all_share").text("共"+Math.ceil(data.RecordCount/5)+"页");
          }
      })
 })

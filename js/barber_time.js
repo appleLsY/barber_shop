@@ -29,6 +29,19 @@ var pageBar = new Vue({
                 this.if_takeoff=false;
             }
         },
+        take_off_click:function(){
+            alert(this.start_date);
+            this.$http.post('http://localhost:11162/api/v1/schedule',{
+                date:this.start_date,
+            },
+            {headers:{token:localStorage.getItem("userId")}},
+            {
+                emulateJSON: true
+            }).then(function(data){
+                alert("请假成功");
+                window.location.reload();
+            })
+        },
         cancel:function(){
             this.if_takeoff=false;
         },

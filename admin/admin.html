@@ -133,14 +133,6 @@
                             <li class="gray" id="all_page">
 
                             </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-left">
-                                </i>
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-right">
-                                </i>
-                            </li>
                         </ul>
                     </footer>
                     <!--弹出添加用户窗口-->
@@ -278,7 +270,7 @@
                             <div class="col-xs-1 ">
                                 编码
                             </div>
-                            <div class="col-xs-1">
+                            <div class="col-xs-2">
                                 姓名
                             </div>
                             <div class="col-xs-2">
@@ -287,11 +279,8 @@
                             <div class="col-xs-2">
                                 邮箱
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-xs-5">
                                 个人简介
-                            </div>
-                            <div class="col-xs-2">
-                                操作
                             </div>
                         </div>
                         <div class="tablebody" id="alluser">
@@ -303,18 +292,10 @@
                     <footer class="footer">
                         <ul class="pagination">
                             <li>
-                                <select id="user_page">
+                            <select id="user_page">
                             </select> 页
                             </li>
                             <li class="gray" id="user_all_page">
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-right">
-                            </i>
                             </li>
                         </ul>
                     </footer>
@@ -366,80 +347,6 @@
                         </div>
                         <!-- /.modal-dialog -->
                     </div>
-                    <!-- /.modal -->
-
-                    <!--修改用户弹出窗口-->
-                    <div class="modal fade" id="changeChar" role="dialog" aria-labelledby="gridSystemModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <form class="form-horizontal">
-                                            <div class="form-group ">
-                                                <label for="sName" class="col-xs-3 control-label">姓名：</label>
-                                                <div class="col-xs-6 ">
-                                                    <input type="email" class="form-control input-sm duiqi" id="edit_user_name" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group ">
-                                                <label for="sName" class="col-xs-3 control-label">手机号：</label>
-                                                <div class="col-xs-6 ">
-                                                    <input type="email" class="form-control input-sm duiqi" id="edit_user_phone" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group ">
-                                                <label for="sName" class="col-xs-3 control-label">邮箱：</label>
-                                                <div class="col-xs-6 ">
-                                                    <input type="email" class="form-control input-sm duiqi" id="edit_user_email" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sLink" class="col-xs-3 control-label">个人介绍：</label>
-                                                <div class="col-xs-6 ">
-                                                    <textarea class="form-control input-sm duiqi" id="edit_user_personalinfo"></textarea>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id="edit_user" onclick="save_edit_user(value)">保 存</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-
-                    <!--弹出删除用户警告窗口-->
-                    <div class="modal fade" id="deleteChar" role="dialog" aria-labelledby="gridSystemModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        确定要删除该权限？删除后不可恢复！
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn btn-xs btn-danger" id="del_user" onclick="delete_user(value)" data-dismiss="modal">保 存</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
 
                 </div>
                 <!--套餐管理模块-->
@@ -487,14 +394,6 @@
                             </li>
                             <li class="gray" id="all_package">
                             </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-right">
-                            </i>
-                            </li>
                         </ul>
                     </footer>
 
@@ -512,25 +411,25 @@
                                             <div class="form-group ">
                                                 <label for="sName" class="col-xs-3 control-label">套餐名称：</label>
                                                 <div class="col-xs-8 ">
-                                                    <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
+                                                    <input type="email" class="form-control input-sm duiqi" id="add_package_name" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="sLink" class="col-xs-3 control-label">套餐内容：</label>
                                                 <div class="col-xs-8 ">
-                                                    <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
+                                                    <input type="" class="form-control input-sm duiqi" id="add_package_content" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="sOrd" class="col-xs-3 control-label">花费时间：</label>
                                                 <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
+                                                    <input type="" class="form-control input-sm duiqi" id="add_package_time" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="sKnot" class="col-xs-3 control-label">套餐价格：</label>
                                                 <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sKnot" placeholder="">
+                                                    <input type="" class="form-control input-sm duiqi" id="add_package_price" placeholder="">
                                                 </div>
                                             </div>
                                         </form>
@@ -538,7 +437,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn btn-xs btn-green">保 存</button>
+                                    <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id="add_package">保 存</button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -561,33 +460,34 @@
                                             <div class="form-group ">
                                                 <label for="sName" class="col-xs-3 control-label">套餐名称：</label>
                                                 <div class="col-xs-8 ">
-                                                    <input type="text" class="form-control input-sm duiqi" id="sName" placeholder="">
+                                                    <input type="text" class="form-control input-sm duiqi" id="package_name" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="sLink" class="col-xs-3 control-label">套餐内容：</label>
                                                 <div class="col-xs-8 ">
-                                                    <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
+                                                    <input type="" class="form-control input-sm duiqi" id="package_content" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="sOrd" class="col-xs-3 control-label">花费时间：</label>
                                                 <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
+                                                    <input type="" class="form-control input-sm duiqi" id="package_time" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="sKnot" class="col-xs-3 control-label">价格：</label>
                                                 <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sKnot" placeholder="">
+                                                    <input type="" class="form-control input-sm duiqi" id="package_price" placeholder="">
                                                 </div>
                                             </div>
+                                            <input value="" id="hide_package_id" style="display:none;" />
                                         </form>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn btn-xs btn-green">保 存</button>
+                                    <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id="save_package">保 存</button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -642,10 +542,13 @@
                             <div class="col-xs-2">
                                 套餐名称
                             </div>
+                            <div class="col-xs-3">
+                                套餐描述
+                            </div>
                             <div class="col-xs-2">
                                 花费时间/分钟
                             </div>
-                            <div class="col-xs-2">
+                            <div class="col-xs-1">
                                 价格
                             </div>
                         </div>
@@ -657,20 +560,10 @@
                     <footer class="footer">
                         <ul class="pagination">
                             <li>
-                                <select>
-                                <option>1</option>
+                                <select id="order_page">
                             </select> 页
                             </li>
-                            <li class="gray">
-                                共1页
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-right">
-                            </i>
+                            <li class="gray" id="all_order">
                             </li>
                         </ul>
                     </footer>
@@ -715,117 +608,11 @@
                             </li>
                             <li class="gray" id="all_share">
                             </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-right">
-                            </i>
-                            </li>
                         </ul>
                     </footer>
 
-                    <!--弹出添加用户窗口-->
-                    <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="gridSystemModalLabel">添加套餐</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <form class="form-horizontal">
-                                            <div class="form-group ">
-                                                <label for="sName" class="col-xs-3 control-label">套餐名称：</label>
-                                                <div class="col-xs-8 ">
-                                                    <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sLink" class="col-xs-3 control-label">套餐内容：</label>
-                                                <div class="col-xs-8 ">
-                                                    <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sOrd" class="col-xs-3 control-label">花费时间：</label>
-                                                <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sKnot" class="col-xs-3 control-label">套餐价格：</label>
-                                                <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sKnot" placeholder="">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn btn-xs btn-green">保 存</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-
-                    <!--弹出修改用户窗口-->
-                    <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="gridSystemModalLabel">修改套餐</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <form class="form-horizontal">
-                                            <div class="form-group ">
-                                                <label for="sName" class="col-xs-3 control-label">套餐名称：</label>
-                                                <div class="col-xs-8 ">
-                                                    <input type="text" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sLink" class="col-xs-3 control-label">套餐内容：</label>
-                                                <div class="col-xs-8 ">
-                                                    <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sOrd" class="col-xs-3 control-label">花费时间：</label>
-                                                <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sKnot" class="col-xs-3 control-label">价格：</label>
-                                                <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sKnot" placeholder="">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn btn-xs btn-green">保 存</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-
                     <!--弹出删除用户警告窗口-->
-                    <div class="modal fade" id="deleteUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal fade" id="deleteShare" role="dialog" aria-labelledby="gridSystemModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -834,12 +621,12 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="container-fluid">
-                                        确定要删除该套餐？删除后不可恢复！
+                                        确定要删除该分享？删除后不可恢复！
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn  btn-xs btn-danger">保 存</button>
+                                    <button type="button" class="btn  btn-xs btn-danger" id="del_share" value="" onclick="delete_share(value)" data-dismiss="modal">保 存</button>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -1029,26 +816,95 @@
     <script src="js/admin.js"></script>
     <!-- this page specific inline scripts -->
     <script>
-        window.onbeforeunload=queren;
-        window.onunload=clear;
-        function queren(){
-            alert("是否确认离开")
-        }
-        function clear(){
-            localStorage.clear();
-            alert("欢迎下次光临");
-        }
+        //公告分页显示
         $("#announcement_page").change(function () {
             var dt = $("#announcement_page").val();
-            alert(dt);
+            $.ajax({
+                url: 'http://localhost:11162/api/v1/announcement/search?pageIndex='+dt+"&pageSize=5",
+                headers:{
+                    token:localStorage.getItem("userId"),
+                },
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $("#account").html("");
+                    console.log(data);
+                    for(var i=0;i<data.List.length;i++){
+                        var newcontent=(data.List[i].Content).substring(0,8);
+                        $("#account").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].Id+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].Title+"</div>"+
+                        "<div class=\"col-xs-2\">"+newcontent+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].CreatedOn+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].CreatedBy+"</div>"+
+                        "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#reviseAnnouncement\" onclick=\"show_announcement("+data.List[i].Id+")\">"+
+                        "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteAnnouncement\" onclick=\"del("+data.List[i].Id+")\">"+
+                        "删除"+"</button></div></div>"
+                        )
+                    }
+                }
+            })
         })
-
+        //人员管理分页显示
+        $("#user_page").change(function () {
+            var dt = $("#user_page").val();
+            $.ajax({
+                url: 'http://localhost:11162/api/v1/account/search?pageIndex='+dt+"&pageSize=5",
+                headers:{
+                    token:localStorage.getItem("userId"),
+                },
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $("#alluser").html("");
+                    console.log(data);
+                    for(var i=0;i<data.List.length;i++){
+                        var N=data.List[i].Name==null?"":data.List[i].Name;
+                        var P=data.List[i].PhoneNumber==null?"":data.List[i].PhoneNumber;
+                        var E=data.List[i].Email==null?"":data.List[i].Email;
+                        var I=data.List[i].PersonalInfo==null?"":data.List[i].PersonalInfo;
+                        $("#alluser").append("<div class=\"row\"><div class=\"col-xs-1\">"+data.List[i].Id+"</div>"+
+                        "<div class=\"col-xs-2\">"+N+"</div>"+
+                        "<div class=\"col-xs-2\">"+P+"</div>"+
+                        "<div class=\"col-xs-2\">"+E+"</div>"+
+                        "<div class=\"col-xs-5\">"+I+"</div>"+
+                        "</div>"
+                        )
+                    }
+                }
+            })
+        })
+        $("#share_page").change(function () {
+            var dt = $("#share_page").val();
+            $.ajax({
+                url: 'http://localhost:11162/api/v1/share/search?pageIndex='+dt+"&pageSize=5",
+                headers:{
+                    token:localStorage.getItem("userId"),
+                },
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $("#allshare").html("");
+                    for(var i=0;i<data.List.length;i++){
+                        $("#allshare").append("<div class=\"row\"><div class=\"col-xs-1\">"+data.List[i].Id+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].User.Name+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].CreatedOn+"</div>"+
+                        "<div class=\"col-xs-5\">"+data.List[i].Content+"</div>"+
+                        "<div class=\"col-xs-2\"><button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
+                        "删除"+"</button></div></div>"
+                        )
+                    }
+                }
+            })
+        })
         //公告管理
         function show_announcement(data) {
             $("#hide_announce_id").val(data);
             $.ajax({
                 url: 'http://localhost:11162/api/v1/announcement?id=' + data,
                 type: 'GET',
+                headers:{
+                    token:localStorage.getItem("userId")
+                },
                 dataType: 'json',
                 success: function (result) {
                     $("#slName").val(result.Title);
@@ -1056,7 +912,25 @@
                 }
             })
         }
-
+        //显示修改套餐信息
+        function show_package(data) {
+            $("#hide_package_id").val(data);
+            $.ajax({
+                url: 'http://localhost:11162/api/v1/package?id=' + data,
+                type: 'GET',
+                headers:{
+                    token:localStorage.getItem("userId")
+                },
+                dataType: 'json',
+                success: function (result) {
+                    console.log(result);
+                    $("#package_name").val(result.Name);
+                    $("#package_content").val(result.Description);
+                    $("#package_time").val(result.Timespan);
+                    $("#package_price").val(result.Price);
+                }
+            })
+        }
         function del(data) {
             $("#del_announce").val(data);
         }
@@ -1065,6 +939,7 @@
             $.ajax({
                 url: 'http://localhost:11162/api/v1/announcement?id=' + data,
                 type: 'DELETE',
+                headers:{token:localStorage.getItem("userId")},
                 dataType: 'json',
                 success: function (result) {
                     alert("删除成功");
@@ -1072,65 +947,22 @@
                 }
             })
         }
-        //用户管理
-        function show_user(data) {
-            $("#edit_user").val(data);
+        function del_share(data) {
+            $("#del_share").val(data);
+        }
+
+        function delete_share(data) {
             $.ajax({
-                url: 'http://localhost:11162/api/v1/account?id=' + data,
-                type: 'GET',
+                url: 'http://localhost:11162/api/v1/share?id=' + data,
+                type: 'DELETE',
+                headers:{token:localStorage.getItem("userId")},
                 dataType: 'json',
                 success: function (result) {
-                    console.log(result);
-                    $("#edit_user_name").val(result.Name);
-                    $("#edit_user_phone").val(result.PhoneNumber);
-                    $("#edit_user_email").val(result.Email);
-                    $("#edit_user_personalinfo").val(result.PersonalInfo);
+                    $("#share_manage").click();
                 }
             })
         }
-
-        function del_user(data) {
-            $("#del_user").val(data);
-        }
-
-        function delete_user(data) {
-            // $.ajax({
-            //     url:'http://localhost:11162/api/v1/announcement?id='+data,
-            //     type:'DELETE',
-            //     dataType:'json',
-            //     success:function(result){
-            //         alert("删除成功");
-            //         window.location.reload();
-            //     }
-            // })
-        }
-        //用户修改保存
-        function save_edit_user(data) {
-            var editname = $("#edit_user_name").val();
-            var editphone = $("#edit_user_phone").val();
-            var editemail = $("#edit_user_email").val();
-            console.log(editemail);
-            var editpersonalinfo = $("#edit_user_personalinfo").val();
-            $.ajax({
-                url: 'http://localhost:11162/api/v1/account',
-                type: 'PUT',
-                dataType: 'json',
-                data: {
-                    Id: data,
-                    Name: editname,
-                    PhoneNumber: editphone,
-                    Email: editemail,
-                    PersonalInfo: editpersonalinfo,
-                },
-                success: function (result) {
-                    alert("修改成功");
-                    $("#user_manage").click();
-                }
-            })
-        }
-    </script>
-    //统计分析
-    <script type="text/javascript">
+        //统计分析
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
         // 指定图表的配置项和数据

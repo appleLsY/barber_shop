@@ -51,8 +51,10 @@ $(function(){
                                     // 告诉jQuery不要去设置Content-Type请求头
                                     data: $('#imgOne').val(),
                                     success:function(data){
-                                        console.log(data);
-                                        $("#img_url").val(data);
+                                        var d=data;
+                                        d = d.replace("\"","").replace("\"","");
+                                        console.log(d);
+                                        $("#img_url").val(d);
                                     },
                                     error:function(data){
                                         console.log(data);

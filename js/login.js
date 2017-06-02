@@ -138,5 +138,14 @@
                     alert("登录失败")
                 })
           },
+          if_has_user:function(){
+              if(localStorage.length!=0){
+                  localStorage.clear();
+                  window.location.reload();
+              }
+          }
+      },
+      created:function(){
+          this.if_has_user();
       }
   })

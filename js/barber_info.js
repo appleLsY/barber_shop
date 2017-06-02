@@ -16,12 +16,19 @@ var vm=new Vue({
         isedit:false,
         noedit:true,
         if_phone_error:false,
+        edit_info:true,
+        edit_qued:false,
     },
     methods:{
         show:function(){
+            this.edit_info=false;
+            this.edit_qued=true;
             this.noedit=false;
             this.isedit=true;
             this.readonly=false
+        },
+        cancel:function(){
+            window.location.reload();
         },
         save:function(){
             if(this.if_phone_error==false&&this.if_email_error==false)

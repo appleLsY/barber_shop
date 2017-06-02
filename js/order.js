@@ -81,13 +81,15 @@ var vm=new Vue({
                     }
                 ]
             },{
+                headers:{token:localStorage.getItem("userId")}
+            },{
                     emulateJSON: true
             }).then(function(data){
                 console.log(data);
                 alert("预约成功")
                 window.location.href=""
             },function(dd){
-                alert(dd.message);
+                alert(dd);
             }
             )
         },

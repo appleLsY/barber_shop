@@ -61,8 +61,9 @@
                                     </div>-->
                                 </div>
                                 <div class="jiange"></div>
-                                <div class="share_photo" v-for="img in article.share_image">
-                                        <img v-bind:src="img" class="min" onclick="show(this)">
+                                <input v-bind:id="article.Id" class="share_id" style="display:none" />
+                                <div class="share_photo">
+                                        <img v-bind:src="article.ImageUrl" class="min" onclick="show()">
                                 </div>
                             </div>
                         </div>
@@ -95,24 +96,19 @@
     <script src="js/jquery.min.js"></script>
     <script type="text/javascript">
     var data=document.getElementsByClassName("min");
-    $(data).ready(function(){
-        for(var i=0;i<data.length;i++){
-            data[i].id=i;
-        }
-    })
-    var data=document.getElementsByClassName("min");
     for(var i=0;i<data.length;i++){
         data[i].id=i;
     }
-    var show=function(obj){
+    var show=function(){
+        var ss=document.getElementsByClassName("share_id");
         var data=document.getElementsByClassName("min");
         var data1=document.getElementsByClassName("max");
         if(data1.length!=0){
-            obj.setAttribute("class","min");
+            ss[i].setAttribute("class","min");
         }
         else{
             for(var i=0;i<data.length+data1.length;i++){
-                if(obj.id==data[i].id){
+                if(ss[i].id+data[i].id==3){
                     data[i].setAttribute("class","max")
                     break;
                 }

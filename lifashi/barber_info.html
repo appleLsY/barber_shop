@@ -69,8 +69,9 @@
                         </textarea>
                     </div>
                     <div class="barber_user_info">
-                        <div class="edit" v-on:click="show">修改</div>
-                        <div class="queren" v-on:click="save">确认</div>
+                        <div class="edit" v-on:click="cancel">取消</div>
+                        <div class="queren" v-on:click="save" v-if="edit_qued">确认</div>
+                        <div class="queren" v-on:click="show" v-if="edit_info">修改</div>
                     </div>
                 </div>
             </div>

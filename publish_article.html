@@ -16,7 +16,7 @@
                             <h2>发表文章</h2>
                         </div>
                         <div class="publish_content">
-                            <textarea maxlength="60" onkeyup="check()" v-model="content" id="textarea_id" placeholder="请发表你所需要的文字(限60字)"></textarea>
+                            <textarea maxlength="60" onkeyup="check()" id="textarea_id" placeholder="请发表你所需要的文字(限60字)"></textarea>
                         </div>
                         <div class="publish_img"> 
                             <!--所选文件压缩后预览-->
@@ -34,13 +34,13 @@
                             <!--后台所要获取的文件base64-->
                             <!--<h3>后台获取base64文件数据：(一个隐藏域)</h3>-->
                             <input id="imgOne" name="imgOne" type="hidden"/>
-                            <input id="img_url" v-model="img_url" type="hidden"/>
+                            <input id="img_url" type="hidden"/>
                             
                         </div>
                     </div>
                     <div class="publish_click">
-                        <div class="publish_cancel" v-on:click="return_publish">返回</div>
-                        <div class="publish_submit" v-on:click="submit_publish">确定</div>
+                        <div class="publish_cancel" onclick="return_publish()">返回</div>
+                        <div class="publish_submit" onclick="publish()">确定</div>
                     </div>
                 </div>
             </div>
@@ -51,16 +51,46 @@
         <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
         <script  src="js/tools.js"></script>
         <script  src="js/pictureHandle.js"></script>
-        <script src="js/vue.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <!--<script src="js/vue.js"></script>
         <script src="js/vue-resource.min.js"></script>
-        <script src="js/publish.js"></script>
+        <script src="js/publish.js"></script>-->
         <script type="text/javascript">
             function check(){
                 var texts=document.getElementById("textarea_id").value;
                 if(texts.length>60){
                     alert("输入字数太多了");
                 }
-    }
-    </script>
+            }
+            function publish(){
+                var cont=$("#textarea_id").val();
+                var imgurl=$("#img_url").val();
+                if(cont==""||cont==null||imgurl=="")
+                {
+                    alert("请输入内容和图片");
+                }
+                else{
+                    $.ajax({
+                        url:'http://localhost:11162/api/v1/share',
+                        headers:{
+                            token:localStorage.getItem("userId"),
+                        },
+                        type:'POST',
+                        dataType:'json',
+                        data:{
+                            Content:cont,
+                            ImageUrl:imgurl,
+                        },
+                        success:function(data){
+                            window.location.href="share.html";
+                        }
+                    })
+                }
+            }
+            function return_publish(){
+                window.location.href="share.html";
+            }
+
+        </script>
     </body>
 </html>

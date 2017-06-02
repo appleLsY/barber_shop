@@ -9,7 +9,6 @@ var pageBar = new Vue({
         len:3,//页面展示公告的数量
         cur: 1,//当前页码
         pageLen:5,
-        imagecur:1,
         min:true,
         max:false,
         search_name:"",
@@ -55,6 +54,7 @@ var pageBar = new Vue({
             }).then(function(data){
                 this.articles=data.body.List;
                 this.newData=[];
+                console.log(this.articles.ImageUrl);
                 let len=this.len;
                 var pageNum=datas-1;
                 for (let i = pageNum * len; i < (pageNum * len + len); i++) {
@@ -101,14 +101,9 @@ var pageBar = new Vue({
             })
         },
         show:function(image_index){
-            alert(image_index);
-            alert(this.imagecur);
-            if(this.imagecur==image_index)
-            {
-                if(this.min==true){
-                    this.min=false;
-                    this.max=true;
-                }
+            if(this.min==true){
+                this.min=false;
+                this.max=true;
             }
             else{
                 this.min=true;
