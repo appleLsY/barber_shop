@@ -290,7 +290,7 @@
                     <footer class="footer">
                         <ul class="pagination">
                             <li>
-                            <select id="user_page">
+                                <select id="user_page">
                             </select> 页
                             </li>
                             <li class="gray" id="user_all_page">
@@ -646,7 +646,9 @@
                     </div>
                     <div class="data-div">
                         <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-                        <div id="main" style="width: 600px;height:400px;"></div>
+                        <div id="loginCount" style="width: 80%;height:400px;"></div>
+                        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                        <div id="amountCount" style="width: 80%;height:400px;"></div>
                     </div>
                 </div>
                 <!--店铺信息管理模块-->
@@ -656,14 +658,14 @@
                     </div>
                     <div class="show_shoptime">
                         <div class="shop_time">
-                        <span>店铺开始营业时间：</span><input id="start_time" value="" />
+                            <span>店铺开始营业时间：</span><input id="start_time" value="" />
                         </div>
                         <div class="shop_time">
-                        <span>店铺结束营业时间：</span><input id="end_time" value="" />
+                            <span>店铺结束营业时间：</span><input id="end_time" value="" />
                         </div>
                     </div>
-                        <button class="btn btn-success btn-xs edit" data-toggle="modal" id="changeTime">确认修改</button>
-                        <button class="btn btn-success btn-xs" data-toggle="modal" id="cancelTime">取消</button>
+                    <button class="btn btn-success btn-xs edit" data-toggle="modal" id="changeTime">确认修改</button>
+                    <button class="btn btn-success btn-xs" data-toggle="modal" id="cancelTime">取消</button>
                 </div>
             </div>
         </div>
@@ -676,25 +678,31 @@
         $("#announcement_page").change(function () {
             var dt = $("#announcement_page").val();
             $.ajax({
-                url: 'http://localhost:11162/api/v1/announcement/search?pageIndex='+dt+"&pageSize=5",
-                headers:{
-                    token:localStorage.getItem("userId"),
+                url: 'http://localhost:11162/api/v1/announcement/search?pageIndex=' + dt +
+                    "&pageSize=5",
+                headers: {
+                    token: localStorage.getItem("userId"),
                 },
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
                     $("#account").html("");
                     console.log(data);
-                    for(var i=0;i<data.List.length;i++){
-                        var newcontent=(data.List[i].Content).substring(0,8);
-                        $("#account").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].Id+"</div>"+
-                        "<div class=\"col-xs-2\">"+data.List[i].Title+"</div>"+
-                        "<div class=\"col-xs-2\">"+newcontent+"</div>"+
-                        "<div class=\"col-xs-2\">"+data.List[i].CreatedOn+"</div>"+
-                        "<div class=\"col-xs-2\">"+data.List[i].CreatedBy+"</div>"+
-                        "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#reviseAnnouncement\" onclick=\"show_announcement("+data.List[i].Id+")\">"+
-                        "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteAnnouncement\" onclick=\"del("+data.List[i].Id+")\">"+
-                        "删除"+"</button></div></div>"
+                    for (var i = 0; i < data.List.length; i++) {
+                        var newcontent = (data.List[i].Content).substring(0, 8);
+                        $("#account").append("<div class=\"row\"><div class=\"col-xs-2\">" + data.List[
+                                i].Id + "</div>" +
+                            "<div class=\"col-xs-2\">" + data.List[i].Title + "</div>" +
+                            "<div class=\"col-xs-2\">" + newcontent + "</div>" +
+                            "<div class=\"col-xs-2\">" + data.List[i].CreatedOn + "</div>" +
+                            "<div class=\"col-xs-2\">" + data.List[i].CreatedBy + "</div>" +
+                            "<div class=\"col-xs-2\"><button id=\"edit_announcement" + i +
+                            "\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#reviseAnnouncement\" onclick=\"show_announcement(" +
+                            data.List[i].Id + ")\">" +
+                            "修改" +
+                            "</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteAnnouncement\" onclick=\"del(" +
+                            data.List[i].Id + ")\">" +
+                            "删除" + "</button></div></div>"
                         )
                     }
                 }
@@ -704,54 +712,55 @@
         $("#user_page").change(function () {
             var dt = $("#user_page").val();
             $.ajax({
-                url: 'http://localhost:11162/api/v1/account/search?pageIndex='+dt+"&pageSize=5",
-                headers:{
-                    token:localStorage.getItem("userId"),
+                url: 'http://localhost:11162/api/v1/account/search?pageIndex=' + dt + "&pageSize=5",
+                headers: {
+                    token: localStorage.getItem("userId"),
                 },
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
                     $("#alluser").html("");
                     console.log(data);
-                    for(var i=0;i<data.List.length;i++){
-                        var N=data.List[i].Name==null?"":data.List[i].Name;
-                        var P=data.List[i].PhoneNumber==null?"":data.List[i].PhoneNumber;
-                        var E=data.List[i].Email==null?"":data.List[i].Email;
-                        var I=data.List[i].PersonalInfo==null?"":data.List[i].PersonalInfo;
-                        $("#alluser").append("<div class=\"row\"><div class=\"col-xs-1\">"+data.List[i].Id+"</div>"+
-                        "<div class=\"col-xs-2\">"+N+"</div>"+
-                        "<div class=\"col-xs-2\">"+P+"</div>"+
-                        "<div class=\"col-xs-2\">"+E+"</div>"+
-                        "<div class=\"col-xs-5\">"+I+"</div>"+
-                        "</div>"
+                    for (var i = 0; i < data.List.length; i++) {
+                        var N = data.List[i].Name == null ? "" : data.List[i].Name;
+                        var P = data.List[i].PhoneNumber == null ? "" : data.List[i].PhoneNumber;
+                        var E = data.List[i].Email == null ? "" : data.List[i].Email;
+                        var I = data.List[i].PersonalInfo == null ? "" : data.List[i].PersonalInfo;
+                        $("#alluser").append("<div class=\"row\"><div class=\"col-xs-1\">" + data.List[
+                                i].Id + "</div>" +
+                            "<div class=\"col-xs-2\">" + N + "</div>" +
+                            "<div class=\"col-xs-2\">" + P + "</div>" +
+                            "<div class=\"col-xs-2\">" + E + "</div>" +
+                            "<div class=\"col-xs-5\">" + I + "</div>" +
+                            "</div>"
                         )
                     }
-                    for(var i=1;i<(Math.ceil(data.RecordCount/10)+1);i++)
-                    {
-                        $("#user_page").append("<option value=\""+i+"\">"+i+"</option>")
+                    for (var i = 1; i < (Math.ceil(data.RecordCount / 10) + 1); i++) {
+                        $("#user_page").append("<option value=\"" + i + "\">" + i + "</option>")
                     }
-                    $("#user_all_page").text("共"+Math.ceil(data.RecordCount/10)+"页");
-                    }
+                    $("#user_all_page").text("共" + Math.ceil(data.RecordCount / 10) + "页");
+                }
             })
         })
         $("#share_page").change(function () {
             var dt = $("#share_page").val();
             $.ajax({
-                url: 'http://localhost:11162/api/v1/share/search?pageIndex='+dt+"&pageSize=5",
-                headers:{
-                    token:localStorage.getItem("userId"),
+                url: 'http://localhost:11162/api/v1/share/search?pageIndex=' + dt + "&pageSize=5",
+                headers: {
+                    token: localStorage.getItem("userId"),
                 },
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
                     $("#allshare").html("");
-                    for(var i=0;i<data.List.length;i++){
-                        $("#allshare").append("<div class=\"row\"><div class=\"col-xs-1\">"+data.List[i].Id+"</div>"+
-                        "<div class=\"col-xs-2\">"+data.List[i].User.Name+"</div>"+
-                        "<div class=\"col-xs-2\">"+data.List[i].CreatedOn+"</div>"+
-                        "<div class=\"col-xs-5\">"+data.List[i].Content+"</div>"+
-                        "<div class=\"col-xs-2\"><button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
-                        "删除"+"</button></div></div>"
+                    for (var i = 0; i < data.List.length; i++) {
+                        $("#allshare").append("<div class=\"row\"><div class=\"col-xs-1\">" + data.List[
+                                i].Id + "</div>" +
+                            "<div class=\"col-xs-2\">" + data.List[i].User.Name + "</div>" +
+                            "<div class=\"col-xs-2\">" + data.List[i].CreatedOn + "</div>" +
+                            "<div class=\"col-xs-5\">" + data.List[i].Content + "</div>" +
+                            "<div class=\"col-xs-2\"><button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">" +
+                            "删除" + "</button></div></div>"
                         )
                     }
                 }
@@ -763,8 +772,8 @@
             $.ajax({
                 url: 'http://localhost:11162/api/v1/announcement?id=' + data,
                 type: 'GET',
-                headers:{
-                    token:localStorage.getItem("userId")
+                headers: {
+                    token: localStorage.getItem("userId")
                 },
                 dataType: 'json',
                 success: function (result) {
@@ -779,8 +788,8 @@
             $.ajax({
                 url: 'http://localhost:11162/api/v1/package?id=' + data,
                 type: 'GET',
-                headers:{
-                    token:localStorage.getItem("userId")
+                headers: {
+                    token: localStorage.getItem("userId")
                 },
                 dataType: 'json',
                 success: function (result) {
@@ -792,6 +801,7 @@
                 }
             })
         }
+
         function del(data) {
             $("#del_announce").val(data);
         }
@@ -800,7 +810,9 @@
             $.ajax({
                 url: 'http://localhost:11162/api/v1/announcement?id=' + data,
                 type: 'DELETE',
-                headers:{token:localStorage.getItem("userId")},
+                headers: {
+                    token: localStorage.getItem("userId")
+                },
                 dataType: 'json',
                 success: function (result) {
                     alert("删除成功");
@@ -808,6 +820,7 @@
                 }
             })
         }
+
         function del_share(data) {
             $("#del_share").val(data);
         }
@@ -816,59 +829,15 @@
             $.ajax({
                 url: 'http://localhost:11162/api/v1/share?id=' + data,
                 type: 'DELETE',
-                headers:{token:localStorage.getItem("userId")},
+                headers: {
+                    token: localStorage.getItem("userId")
+                },
                 dataType: 'json',
                 success: function (result) {
                     $("#share_manage").click();
                 }
             })
         }
-        //统计分析
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
-        // 指定图表的配置项和数据
-        var option = {
-            title: {
-                text: '日登陆统计',
-                subtext: ''
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: ['登陆人数']
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    magicType: {
-                        show: true,
-                        type: ['stack', 'tiled']
-                    },
-                    saveAsImage: {
-                        show: true
-                    }
-                }
-            },
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [{
-                    name: '登陆人数',
-                    type: 'line',
-                    smooth: true,
-                    data: [10, 12, 21, 54, 50, 50, 60]
-                }
-            ]
-        };
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
     </script>
 </body>
 
