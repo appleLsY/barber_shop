@@ -101,7 +101,7 @@ var pageBar = new Vue({
             })
         },
         show:function(image_index){
-            alert(image_index);
+            //alert(image_index);
             // if(this.min==true){
             //     this.min=false;
             //     this.max=true;

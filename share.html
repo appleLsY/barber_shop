@@ -3,10 +3,12 @@
     <head>
         <title></title>
         <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <link href="css/zoom.css" rel="stylesheet">
     </head>
     <body>
         <div class="banner-bg-one" id="home">
@@ -62,9 +64,9 @@
                                 </div>
                                 <div class="jiange"></div>
                                 <input v-bind:id="article.Id" class="share_id" style="display:none" />
-                                <div class="share_photo">
-                                        <img v-bind:src="article.ImageUrl" class="min" onclick="show(value)">
-                                </div>
+                                <!--<div class="share_photo">-->
+                                        <img v-bind:src="article.ImageUrl" class="min" data-action="zoom">
+                                <!--</div>-->
                             </div>
                         </div>
                         <div class="page-bar">
@@ -94,33 +96,35 @@
     <script src="js/vue-resource.min.js"></script>
     <script src="js/share.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="js/transition.js"></script>
+    <script src="js/zoom.js"></script>
     <script type="text/javascript">
-    var data=document.getElementsByClassName("min");
-    for(var i=0;i<data.length;i++){
-        data[i].id=i;
-    }
-    var show=function(obj){
-        console.log(obj);
-        var ss=document.getElementsByClassName("share_id");
-        var data=document.getElementsByClassName("min");
-        var data1=document.getElementsByClassName("max");
-        if(data1.length!=0){
-            ss[i].setAttribute("class","min");
-        }
-        else{
-            for(var i=0;i<data.length+data1.length;i++){
-                if(ss[i].id+data[i].id==3){
-                    data[i].setAttribute("class","max")
-                    break;
-                }
-        }
-            // data[i].addEventListener('click',i===data[i].id?function(){
-            //     alert("lala");
-            // }:function(){
-            //     alert("asda");
-            // })
-        }
-    }
+    // var data=document.getElementsByClassName("min");
+    // for(var i=0;i<data.length;i++){
+    //     data[i].id=i;
+    // }
+    // var show=function(obj){
+    //     console.log(obj);
+    //     var ss=document.getElementsByClassName("share_id");
+    //     var data=document.getElementsByClassName("min");
+    //     var data1=document.getElementsByClassName("max");
+    //     if(data1.length!=0){
+    //         ss[i].setAttribute("class","min");
+    //     }
+    //     else{
+    //         for(var i=0;i<data.length+data1.length;i++){
+    //             if(ss[i].id+data[i].id==3){
+    //                 data[i].setAttribute("class","max")
+    //                 break;
+    //             }
+    //     }
+    //         // data[i].addEventListener('click',i===data[i].id?function(){
+    //         //     alert("lala");
+    //         // }:function(){
+    //         //     alert("asda");
+    //         // })
+    //     }
+    // }
     </script>
     </body>
 </html>
