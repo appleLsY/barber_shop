@@ -261,8 +261,8 @@
                             <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addUser">添加理发师 </button>
                         </div>
                         <div class="col-xs-4" style="float:right;">
-                            <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
-                            <button class="btn btn-white btn-xs ">查 询 </button>
+                            <input type="text" class="form-control input-sm" id="s_user" placeholder="输入文字搜索">
+                            <button class="btn btn-white btn-xs" id="search_user">查 询 </button>
                         </div>
                     </div>
                     <div class="data-div">
@@ -648,150 +648,6 @@
                         <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
                         <div id="main" style="width: 600px;height:400px;"></div>
                     </div>
-                    <!--页码块-->
-                    <footer class="footer">
-                        <ul class="pagination">
-                            <li>
-                                <select>
-                                <option>1</option>
-                            </select> 页
-                            </li>
-                            <li class="gray">
-                                共1页
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-menu-right">
-                            </i>
-                            </li>
-                        </ul>
-                    </footer>
-
-                    <!--弹出添加用户窗口-->
-                    <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="gridSystemModalLabel">添加套餐</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <form class="form-horizontal">
-                                            <div class="form-group ">
-                                                <label for="sName" class="col-xs-3 control-label">套餐名称：</label>
-                                                <div class="col-xs-8 ">
-                                                    <input type="email" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sLink" class="col-xs-3 control-label">套餐内容：</label>
-                                                <div class="col-xs-8 ">
-                                                    <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sOrd" class="col-xs-3 control-label">花费时间：</label>
-                                                <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sKnot" class="col-xs-3 control-label">套餐价格：</label>
-                                                <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sKnot" placeholder="">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn btn-xs btn-green">保 存</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-
-                    <!--弹出修改用户窗口-->
-                    <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="gridSystemModalLabel">修改套餐</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <form class="form-horizontal">
-                                            <div class="form-group ">
-                                                <label for="sName" class="col-xs-3 control-label">套餐名称：</label>
-                                                <div class="col-xs-8 ">
-                                                    <input type="text" class="form-control input-sm duiqi" id="sName" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sLink" class="col-xs-3 control-label">套餐内容：</label>
-                                                <div class="col-xs-8 ">
-                                                    <input type="" class="form-control input-sm duiqi" id="sLink" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sOrd" class="col-xs-3 control-label">花费时间：</label>
-                                                <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sOrd" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="sKnot" class="col-xs-3 control-label">价格：</label>
-                                                <div class="col-xs-8">
-                                                    <input type="" class="form-control input-sm duiqi" id="sKnot" placeholder="">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn btn-xs btn-green">保 存</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-
-                    <!--弹出删除用户警告窗口-->
-                    <div class="modal fade" id="deleteUser" role="dialog" aria-labelledby="gridSystemModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        确定要删除该套餐？删除后不可恢复！
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                    <button type="button" class="btn  btn-xs btn-danger">保 存</button>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
-                    <!-- /.modal -->
-
                 </div>
                 <!--店铺信息管理模块-->
                 <div role="tabpanel" class="tab-pane" id="scho">
@@ -803,7 +659,7 @@
                         <span>店铺开始营业时间：</span><input id="start_time" value="" />
                         </div>
                         <div class="shop_time">
-                        <span>店铺开始营业时间：</span><input id="start_time" value="" />
+                        <span>店铺结束营业时间：</span><input id="end_time" value="" />
                         </div>
                     </div>
                         <button class="btn btn-success btn-xs edit" data-toggle="modal" id="changeTime">确认修改</button>

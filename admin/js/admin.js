@@ -96,7 +96,7 @@ $("#edit_save").click(function(){
          type:'GET',
          dataType:'json',
          success:function(data){
-            for(var i=0;i<5;i++){
+            for(var i=0;i<data.List.length;i++){
                 var N=data.List[i].Name==null?"":data.List[i].Name;
                 var P=data.List[i].PhoneNumber==null?"":data.List[i].PhoneNumber;
                 var E=data.List[i].Email==null?"":data.List[i].Email;
@@ -140,6 +140,45 @@ $("#edit_save").click(function(){
          }
      })
  })
+
+ //用户搜索
+ $("#search_user").click(function(){
+     var uu=$("#s_user").val();
+     $.ajax({
+         url:'http://localhost:11162/api/v1/account/search?keyWord='+uu,
+         headers:{token:localStorage.getItem("userId")},
+         type:'GET',
+         dataType:'json',
+         success:function(data){
+             console.log(data);
+            $("#alluser").html("");
+            console.log(data);
+            for(var i=0;i<data.List.length;i++){
+                var N=data.List[i].Name==null?"":data.List[i].Name;
+                var P=data.List[i].PhoneNumber==null?"":data.List[i].PhoneNumber;
+                var E=data.List[i].Email==null?"":data.List[i].Email;
+                var I=data.List[i].PersonalInfo==null?"":data.List[i].PersonalInfo;
+                $("#alluser").append("<div class=\"row\"><div class=\"col-xs-1\">"+data.List[i].Id+"</div>"+
+                "<div class=\"col-xs-2\">"+N+"</div>"+
+                "<div class=\"col-xs-2\">"+P+"</div>"+
+                "<div class=\"col-xs-2\">"+E+"</div>"+
+                "<div class=\"col-xs-5\">"+I+"</div>"+
+                "</div>"
+                )
+            }
+            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
+            {
+                $("#user_page").append("<option value=\""+i+"\">"+i+"</option>")
+            }
+            $("#user_all_page").text("共"+Math.ceil(data.RecordCount/5)+"页");
+        }
+
+     })
+ })
+ //订单搜索
+ //分享搜索
+ //套餐搜索
+ //公告搜索
 
 //套餐管理
 $("#pakage_manage").click(function(){
@@ -269,6 +308,21 @@ $("#share_manage").click(function(){
 
 //店铺管理
 $("#shopinfo_manage").click(function(){
+    $.ajax({
+        url:'http://localhost:11162/api/v1/shopSetting',
+        headers:{token:localStorage.getItem("userId")},
+        type:'GET',
+        dataType:'json',
+        success:function(data){
+            console.log(data.StartTime)
+            var s=data.StartTime;
+            s=s.substring(11,19)
+            var e=data.EndTime;
+            e=e.substring(11,19)
+            $("#start_time").val(s);
+            $("#end_time").val(e);
+        }
+    })
     
 })
 
@@ -280,7 +334,25 @@ $("#cancelTime").click(function(){
     $(".shop_time input").attr('disabled', 'true');
     $("#shopinfo_manage").click();
 })
-
+$("#changeTime").click(function(){
+    var start=$("#start_time").val();
+    var end=$("#end_time").val();
+    $.ajax({
+        url:'http://localhost:11162/api/v1/shopSetting',
+        headers:{token:localStorage.getItem("userId")},
+        type:"PUT",
+        dataType:'json',
+        data:{
+            StartTime:start,
+            EndTime:end,            
+        },
+        success:function(data){
+            alert("修改成功");
+            $(".shop_time input").attr('disabled', 'true');
+            $("#shopinfo_manage").click();
+        }
+    })
+})
 
 $("#login_out").click(function(){
     localStorage.clear();
