@@ -101,14 +101,15 @@ var pageBar = new Vue({
             })
         },
         show:function(image_index){
-            if(this.min==true){
-                this.min=false;
-                this.max=true;
-            }
-            else{
-                this.min=true;
-                this.max=false;
-            }
+            alert(image_index);
+            // if(this.min==true){
+            //     this.min=false;
+            //     this.max=true;
+            // }
+            // else{
+            //     this.min=true;
+            //     this.max=false;
+            // }
         },
         return_index:function(){
             window.location.href="index.html";
