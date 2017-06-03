@@ -72,13 +72,13 @@ var vm=new Vue({
         },
         yuyue:function(){
             this.$http.post("http://localhost:11162/api/v1/order",{
-                UserId:2,
                 BarberId:this.barber_select,
                 StartTime:this.start_date+" "+this.starttime,
                 Chanel:this.pay_method,
                 Packages:[
                     {
                         Id:this.package_select,
+                        Price:this.price,
                     }
                 ]
             },{
@@ -88,7 +88,7 @@ var vm=new Vue({
             }).then(function(data){
                 console.log(data);
                 alert("预约成功");
-                window.location.href=""
+                window.location.href="look_my_order.html"
             },function(dd){
                 alert(dd);
             }

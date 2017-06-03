@@ -1107,13 +1107,24 @@ li{
   height: 300px;
   margin: 0 auto;
   margin-top: 30px;
+  color: white;
 }
 .dat{
   color: black;
   background-color: wheat;
 }
+.order_data{
+  color: black;
+}
+.order_data thead{
+  color: white;
+}
 
 /*查看预约信息*/
+.look_all{
+  width: 100%;
+  height: 50px;
+}
 .look_order{
   width: 100px;
   height: 30px;

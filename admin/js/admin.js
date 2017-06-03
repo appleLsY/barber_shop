@@ -177,6 +177,40 @@ $(function () {
         })
     })
     //订单搜索
+ $("#search_order").click(function(){
+     var uu=$("#s_order").val();
+     $.ajax({
+         url:'http://localhost:11162/api/v1/order/search?keyWord='+uu,
+         headers:{token:localStorage.getItem("userId")},
+         type:'GET',
+         dataType:'json',
+         success:function(data){
+             $("allorder").html("");
+             $("#order_page").html("");
+             $("#all_order").html("");
+             console.log(data);
+            for(var i=0;i<data.List.length;i++){
+                $("#allorder").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].OrderNo+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].UserName+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Name+"</div>"+
+                "<div class=\"col-xs-3\">"+data.List[i].Packages[0].Description+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Timespan+"</div>"+
+                "<div class=\"col-xs-1\">"+data.List[i].Packages[0].Price+"</div>"+
+                "</div>"
+                )
+            }
+            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
+            {
+                $("#order_page").append("<option>"+i+"</option>")
+            }
+            $("#all_order").text("共"+Math.ceil(data.RecordCount/5)+"页");
+            $("#order_return").text("返回");
+            }
+     })
+ })
+ $("#order_return").click(function(){
+     $("#order_manage").click();
+ })
 
     //分享搜索
     $("#search_share").click(function () {
@@ -216,7 +250,82 @@ $(function () {
     })
 
     //套餐搜索
+ $("#search_package").click(function(){
+     var uu=$("#s_package").val();
+     alert(uu);
+     $.ajax({
+         url:'http://localhost:11162/api/v1/package/search?keyWord='+uu,
+         headers:{token:localStorage.getItem("userId")},
+         type:'GET',
+         dataType:'json',
+         success:function(data){
+            console.log(data);
+            $("#allpackage").html("");
+            $("#package_page").html("");
+            $("#all_package").html("");
+            console.log(data);
+            for(var i=0;i<data.List.length;i++){
+                $("#allpackage").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].Id+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Name+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Description+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Timespan+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Price+"</div>"+
+                "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#revisePackage\" onclick=\"show_package("+data.List[i].Id+")\">"+
+                "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
+                "删除"+"</button></div></div>"
+                )
+            }
+            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
+            {
+                $("#package_page").append("<option>"+i+"</option>")
+            }
+            $("#all_package").text("共"+Math.ceil(data.RecordCount/5)+"页");
+                $("#package_return").text("返回");
+        }
+     })
+ })
+ $("#package_return").click(function(){
+     $("#pakage_manage").click();
+ })
+
     //公告搜索
+ $("#search_announcement").click(function(){
+     var uu=$("#s_announcement").val();
+     alert(uu);
+     $.ajax({
+         url:'http://localhost:11162/api/v1/announcement/search?keyWord='+uu,
+         headers:{token:localStorage.getItem("userId")},
+         type:'GET',
+         dataType:'json',
+         success: function (data) {
+             $("#account").html("");
+             $("#announcement_page").html("");
+             $("#all_page").html("");
+            for(var i=0;i<data.List.length;i++){
+                var newcontent=(data.List[i].Content).substring(0,8);
+                $("#account").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].Id+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].Title+"</div>"+
+                "<div class=\"col-xs-2\">"+newcontent+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].CreatedOn+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].CreatedBy+"</div>"+
+                "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#reviseAnnouncement\" onclick=\"show_announcement("+data.List[i].Id+")\">"+
+                "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteAnnouncement\" onclick=\"del("+data.List[i].Id+")\">"+
+                "删除"+"</button></div></div>"
+                )
+            }
+            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
+            {
+                $("#announcement_page").append("<option value=\""+i+"\">"+i+"</option>")
+            }
+            $("#all_page").text("共"+Math.ceil(data.RecordCount/5)+"页");
+            $("#announcement_return").text("返回");
+        }
+     })
+ })
+ $("#announcement_return").click(function(){
+     window.location.reload();
+ })
+
 
     //套餐管理
     $("#pakage_manage").click(function () {

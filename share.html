@@ -63,7 +63,7 @@
                                 <div class="jiange"></div>
                                 <input v-bind:id="article.Id" class="share_id" style="display:none" />
                                 <div class="share_photo">
-                                        <img v-bind:src="article.ImageUrl" class="min" onclick="show()">
+                                        <img v-bind:src="article.ImageUrl" class="min" onclick="show(value)">
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,8 @@
     for(var i=0;i<data.length;i++){
         data[i].id=i;
     }
-    var show=function(){
+    var show=function(obj){
+        console.log(obj);
         var ss=document.getElementsByClassName("share_id");
         var data=document.getElementsByClassName("min");
         var data1=document.getElementsByClassName("max");

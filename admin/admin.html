@@ -92,6 +92,10 @@
                 <div role="tabpanel" class="tab-pane active" id="sour">
                     <div class="check-div form-inline">
                         <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addAnnouncement">添加公告</button>
+                        <div class="col-xs-4" style="float:right;">
+                            <input type="text" class="form-control input-sm" id="s_announcement" placeholder="输入文字搜索">
+                            <button class="btn btn-white btn-xs" id="search_announcement">查 询 </button>
+                        </div>
                     </div>
                     <div class="data-div">
                         <div class="row tableHeader">
@@ -129,7 +133,8 @@
                                 </select> 页
                             </li>
                             <li class="gray" id="all_page">
-
+                            </li>
+                            <li id="announcement_return">
                             </li>
                         </ul>
                     </footer>
@@ -354,8 +359,8 @@
                             <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addPackage">添加套餐 </button>
                         </div>
                         <div class="col-xs-4" style="float:right;">
-                            <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
-                            <button class="btn btn-white btn-xs ">查 询 </button>
+                            <input type="text" class="form-control input-sm" id="s_package" placeholder="输入文字搜索">
+                            <button class="btn btn-white btn-xs" id="search_package">查 询 </button>
                         </div>
                     </div>
                     <div class="data-div">
@@ -391,6 +396,8 @@
                                 </select> 页
                             </li>
                             <li class="gray" id="all_package">
+                            </li>
+                            <li id="package_return">
                             </li>
                         </ul>
                     </footer>
@@ -525,8 +532,8 @@
                         <div class="col-xs-3">
                         </div>
                         <div class="col-xs-4" style="float:right;">
-                            <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
-                            <button class="btn btn-white btn-xs ">查 询 </button>
+                            <input type="text" class="form-control input-sm" id="s_order" placeholder="输入文字搜索">
+                            <button class="btn btn-white btn-xs" id="search_order">查 询 </button>
                         </div>
                     </div>
                     <div class="data-div">
@@ -562,6 +569,8 @@
                             </select> 页
                             </li>
                             <li class="gray" id="all_order">
+                            </li>
+                            <li id="order_return">
                             </li>
                         </ul>
                     </footer>
@@ -742,6 +751,38 @@
                 }
             })
         })
+        //套餐管理分页
+        $("#package_page").change(function () {
+            var dt = $("#package_page").val();
+            $.ajax({
+                url: 'http://localhost:11162/api/v1/share/search?pageIndex='+dt+"&pageSize=5",
+                headers:{
+                    token:localStorage.getItem("userId"),
+                },
+                type: 'GET',
+                dataType: 'json',
+                success:function(data){
+                    $("#allpackage").html("");
+                    for(var i=0;i<data.List.length;i++){
+                        $("#allpackage").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].Id+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].Name+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].Description+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].Timespan+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].Price+"</div>"+
+                        "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#revisePackage\" onclick=\"show_package("+data.List[i].Id+")\">"+
+                        "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
+                        "删除"+"</button></div></div>"
+                        )
+                    }
+                    for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
+                    {
+                        $("#package_page").append("<option>"+i+"</option>")
+                    }
+                $("#all_package").text("共"+Math.ceil(data.RecordCount/5)+"页");
+                }
+            })
+        })
+        //分享分页显示
         $("#share_page").change(function () {
             var dt = $("#share_page").val();
             $.ajax({
@@ -763,6 +804,43 @@
                             "删除" + "</button></div></div>"
                         )
                     }
+                    for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
+                    {
+                        $("#share_page").append("<option>"+i+"</option>")
+                    }
+                    $("#all_share").text("共"+Math.ceil(data.RecordCount/5)+"页");
+                    $("#share_return").text("");
+                }
+            })
+        })
+        //订单分页显示
+        $("#order_page").change(function () {
+            var dt = $("#order_page").val();
+            alert(dt);
+            $.ajax({
+                url: 'http://localhost:11162/api/v1/order/search?pageIndex='+dt+"&pageSize=5",
+                headers:{
+                    token:localStorage.getItem("userId"),
+                },
+                type: 'GET',
+                dataType: 'json',
+                success:function(data){
+                    $("#allorder").html("");
+                    for(var i=0;i<data.List.length;i++){
+                        $("#allorder").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].OrderNo+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].UserName+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Name+"</div>"+
+                        "<div class=\"col-xs-3\">"+data.List[i].Packages[0].Description+"</div>"+
+                        "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Timespan+"</div>"+
+                        "<div class=\"col-xs-1\">"+data.List[i].Packages[0].Price+"</div>"+
+                        "</div>"
+                        )
+                    }
+                    for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
+                    {
+                        $("#order_page").append("<option>"+i+"</option>")
+                    }
+                $("#all_order").text("共"+Math.ceil(data.RecordCount/5)+"页");
                 }
             })
         })
