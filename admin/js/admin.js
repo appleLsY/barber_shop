@@ -9,30 +9,30 @@ $(function() {
         $("#userName").text(localStorage.getItem("username"));
     }
 $.ajax({
-     url: 'http://localhost:11162/api/v1/announcement/all',
+     url: 'http://localhost:11162/api/v1/announcement/search',
      headers:{
          token:localStorage.getItem("userId"),
      },
      type: 'GET',
      dataType: 'json',
      success: function (data) {
-         for(var i=0;i<5;i++){
-             var newcontent=(data[i].Content).substring(0,8);
-             $("#account").append("<div class=\"row\"><div class=\"col-xs-2\">"+data[i].Id+"</div>"+
-             "<div class=\"col-xs-2\">"+data[i].Title+"</div>"+
+         for(var i=0;i<data.List.length;i++){
+             var newcontent=(data.List[i].Content).substring(0,8);
+             $("#account").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].Id+"</div>"+
+             "<div class=\"col-xs-2\">"+data.List[i].Title+"</div>"+
              "<div class=\"col-xs-2\">"+newcontent+"</div>"+
-             "<div class=\"col-xs-2\">"+data[i].CreatedOn+"</div>"+
-             "<div class=\"col-xs-2\">"+data[i].CreatedBy+"</div>"+
-             "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#reviseAnnouncement\" onclick=\"show_announcement("+data[i].Id+")\">"+
-             "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteAnnouncement\" onclick=\"del("+data[i].Id+")\">"+
+             "<div class=\"col-xs-2\">"+data.List[i].CreatedOn+"</div>"+
+             "<div class=\"col-xs-2\">"+data.List[i].CreatedBy+"</div>"+
+             "<div class=\"col-xs-2\"><button id=\"edit_announcement"+i+"\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#reviseAnnouncement\" onclick=\"show_announcement("+data.List[i].Id+")\">"+
+             "修改"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteAnnouncement\" onclick=\"del("+data.List[i].Id+")\">"+
              "删除"+"</button></div></div>"
             )
          }
-        for(var i=1;i<(Math.ceil(data.length/5)+1);i++)
+        for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
         {
             $("#announcement_page").append("<option value=\""+i+"\">"+i+"</option>")
         }
-        $("#all_page").text("共"+Math.ceil(data.length/5)+"页");
+        $("#all_page").text("共"+Math.ceil(data.RecordCount/5)+"页");
      }
  });
  //添加公告
@@ -109,11 +109,11 @@ $("#edit_save").click(function(){
                 "</div>"
                 )
             }
-            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
+            for(var i=1;i<(Math.ceil(data.RecordCount/10)+1);i++)
             {
                 $("#user_page").append("<option value=\""+i+"\">"+i+"</option>")
             }
-        $("#user_all_page").text("共"+Math.ceil(data.RecordCount/5)+"页");
+        $("#user_all_page").text("共"+Math.ceil(data.RecordCount/10)+"页");
          }
      })
  })
@@ -152,6 +152,8 @@ $("#edit_save").click(function(){
          success:function(data){
              console.log(data);
             $("#alluser").html("");
+            $("#user_page").html("");
+            $("#user_all_page").html("");
             console.log(data);
             for(var i=0;i<data.List.length;i++){
                 var N=data.List[i].Name==null?"":data.List[i].Name;
@@ -166,17 +168,53 @@ $("#edit_save").click(function(){
                 "</div>"
                 )
             }
-            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
+            for(var i=1;i<(Math.ceil(data.RecordCount/10)+1);i++)
             {
                 $("#user_page").append("<option value=\""+i+"\">"+i+"</option>")
             }
-            $("#user_all_page").text("共"+Math.ceil(data.RecordCount/5)+"页");
+            $("#user_all_page").text("共"+Math.ceil(data.RecordCount/10)+"页");
         }
 
      })
  })
  //订单搜索
+
  //分享搜索
+ $("#search_share").click(function(){
+     var uu=$("#s_share").val();
+     $.ajax({
+         url:'http://localhost:11162/api/v1/share/search?keyWord='+uu,
+         headers:{token:localStorage.getItem("userId")},
+         type:'GET',
+         dataType:'json',
+         success:function(data){
+             console.log(data);
+            $("#allshare").html("");
+            $("#share_page").html("");
+            $("#share_all_page").html("");
+            console.log(data);
+            for(var i=0;i<data.List.length;i++){
+                $("#allshare").append("<div class=\"row\"><div class=\"col-xs-1\">"+data.List[i].Id+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].User.Name+"</div>"+
+                "<div class=\"col-xs-2\">"+data.List[i].CreatedOn+"</div>"+
+                "<div class=\"col-xs-5\">"+data.List[i].Content+"</div>"+
+                "<div class=\"col-xs-2\"><button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deletePackage\">"+
+                "删除"+"</button></div></div>"
+                )
+            }
+            for(var i=1;i<(Math.ceil(data.RecordCount/10)+1);i++)
+            {
+                $("#share_page").append("<option value=\""+i+"\">"+i+"</option>")
+            }
+            $("#share_all_page").text("共"+Math.ceil(data.RecordCount/10)+"页");
+            $("#share_return").text("返回");
+        }
+     })
+ })
+ $("#share_return").click(function(){
+     $("#share_manage").click();
+ })
+
  //套餐搜索
  //公告搜索
 
@@ -302,6 +340,7 @@ $("#share_manage").click(function(){
                 $("#share_page").append("<option>"+i+"</option>")
             }
         $("#all_share").text("共"+Math.ceil(data.RecordCount/5)+"页");
+        $("#share_return").text("");
          }
      })
 })

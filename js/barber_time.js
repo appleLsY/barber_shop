@@ -12,6 +12,25 @@ var pageBar = new Vue({
         currentWeek: 1,
         days: [],
         hours:[],
+        isblues:[{isblue:true},{isblue:true},{isblue:true},{isblue:true},{isblue:true},{isblue:true},{isblue:true},
+        {isblue:true},{isblue:true},{isblue:true},{isblue:true},{isblue:true},{isblue:true},{isblue:true},
+        {isblue:true},{isblue:true},{isblue:true}],
+        status:"",
+        times:[],
+        data_time:[{startime:"09:00", endtime:"09:30"},{startime:"09:30", endtime:"10:00"},
+        {startime:"10:00",endtime:"10:30",},{startime:"10:30",endtime:"11:00"},
+        {startime:"11:00",endtime:"11:30",},{startime:"11:30",endtime:"12:00"},
+        {startime:"12:00",endtime:"12:30",},{startime:"12:30",endtime:"13:00"},
+        {startime:"13:00",endtime:"13:30",},{startime:"13:30",endtime:"14:00"},
+        {startime:"14:00",endtime:"14:30",},{startime:"14:30",endtime:"15:00"},
+        {startime:"15:00",endtime:"15:30",},{startime:"15:30",endtime:"16:00"},
+        {startime:"16:00",endtime:"16:30",},{startime:"16:30",endtime:"17:00"},
+        {startime:"17:00",endtime:"17:30",}
+        ],
+        data_status:[{status:"禁用"},{status:"禁用"},{status:"禁用"},{status:"禁用"},{status:"禁用"},{status:"禁用"},{status:"禁用"},
+        {status:"禁用"},{status:"禁用"},{status:"禁用"},{status:"禁用"},{status:"禁用"},{status:"禁用"},{status:"禁用"},{status:"禁用"},
+        {status:"禁用"},{status:"禁用"},
+        ]
     },
     methods:{
         getName:function(){
@@ -28,6 +47,57 @@ var pageBar = new Vue({
             else{
                 this.if_takeoff=false;
             }
+        },
+        show:function(dae){
+            if(this.data_status[dae].status=="禁用"){
+                this.$http.post('http://localhost:11162/api/v1/schedule/forbiden',{
+                StartTime:this.data_time[dae].startime,
+                EndTime:this.data_time[dae].endtime
+            },
+            {headers:{token:localStorage.getItem("userId")}},
+                {
+                    emulateJSON:true
+                }).then(function(data){
+                    this.data_status[dae].status="已禁用";
+                })
+            }
+        },
+        getData:function(){
+            this.$http.get('http://localhost:11162/api/v1/schedule/all',{
+                headers:{token:localStorage.getItem("userId")},
+            },{
+                emulateJSON:true,
+            }).then(function(data){
+                console.log(data.body);
+                this.times=data.body;
+                alert(this.times.length);
+                if(this.times.length==0){
+                    for(var i=0;i<this.data_status.length;i++){
+                        this.data_status[i].status="禁用";
+                    }
+                }
+                else{
+                    for(var i=0;i<this.times.length;i++){
+                        var stattime=this.times[i].StartTime;
+                        stattime=stattime.substring(11,16);
+                        var endtime=this.times[i].EndTime;
+                        endtime=endtime.substring(11,16);
+                        var k,m;
+                        for(j=0;j<this.data_time.length;j++){
+                            if(this.data_time[j].startime==stattime){
+                                k=j;
+                            }
+                            if(this.data_time[j].startime==endtime){
+                                m=j;
+                            }
+                            for(var t=k;t<m;t++){
+                                    this.data_status[t].status="已预约";
+                                    this.isblues[t].isblue=false;
+                            }
+                        }
+                    }
+                }
+            })
         },
         take_off_click:function(){
             alert(this.start_date);
@@ -116,5 +186,6 @@ var pageBar = new Vue({
     created:function(){  //页面加载就执行getData方法
         this.getName();
         this.initData(null);
+        this.getData();
     },
 })

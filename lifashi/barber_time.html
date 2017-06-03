@@ -81,51 +81,91 @@
                         <th>结束时间</th>
                         <th>操作</th>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>9:00</td>
-                            <td>9:30</td>
-                            <td class="evaluation_link"><a href="#"><span>禁用</span></a></td>
+                    <tbody id="time_plan">
+                        <tr id="one">
+                            <td>{{data_time[0].startime}}</td>
+                            <td>{{data_time[0].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[0].isblue}" v-on:click="show(0)">{{data_status[0].status}}</td>
                         </tr>
-                        <tr>
-                            <td>9:30</td>
-                            <td>10:00</td>
-                            <td class="evaluation_link"><a href="#"><span>禁用</span></a></td>
+                        <tr id="two">
+                            <td>{{data_time[1].startime}}</td>
+                            <td>{{data_time[1].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[1].isblue}" v-on:click="show(1)">{{data_status[1].status}}</td>
                         </tr>
-                        <tr>
-                            <td>10:00</td>
-                            <td>10:30</td>
-                            <td class="evaluation_link"><a href="#"><span>禁用</span></a></td>
+                        <tr id="three">
+                            <td>{{data_time[2].startime}}</td>
+                            <td>{{data_time[2].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[2].isblue}" v-on:click="show(2)">{{data_status[2].status}}</td>
                         </tr>
-                        <tr>
-                            <td>10:30</td>
-                            <td>11:00</td>
-                            <td class="evaluation_link"><a href="#"><span>禁用</span></a></td>
+                        <tr id="four">
+                            <td>{{data_time[3].startime}}</td>
+                            <td>{{data_time[3].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[3].isblue}" v-on:click="show(3)">{{data_status[3].status}}</td>
                         </tr>
-                        <tr>
-                            <td>11:00</td>
-                            <td>11:30</td>
-                            <td>已预约</td>
+                        <tr id="five">
+                            <td>{{data_time[4].startime}}</td>
+                            <td>{{data_time[4].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[4].isblue}" v-on:click="show(4)">{{data_status[4].status}}</td>
                         </tr>
-                        <tr>
-                            <td>13:00</td>
-                            <td>13:30</td>
-                            <td>已预约</td>
+                        <tr id="six">
+                            <td>{{data_time[5].startime}}</td>
+                            <td>{{data_time[5].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[5].isblue}" v-on:click="show(5)">{{data_status[5].status}}</td>
                         </tr>
-                        <tr>
-                            <td>13:30</td>
-                            <td>14:00</td>
-                            <td class="evaluation_link"><a href="#"><span>禁用</span></a></td>
+                        <tr id="seven">
+                            <td>{{data_time[6].startime}}</td>
+                            <td>{{data_time[6].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[6].isblue}" v-on:click="show(6)">{{data_status[6].status}}</td>
                         </tr>
-                        <tr>
-                            <td>14:00</td>
-                            <td>14:30</td>
-                            <td class="evaluation_link"><a href="#"><span>禁用</span></a></td>
+                        <tr id="eight">
+                            <td>{{data_time[7].startime}}</td>
+                            <td>{{data_time[7].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[7].isblue}" v-on:click="show(7)">{{data_status[7].status}}</td>
                         </tr>
-                        <tr>
-                            <td>14:30</td>
-                            <td>15:00</td>
-                            <td class="evaluation_link"><a href="#"><span>禁用</span></a></td>
+                        <tr id="nine">
+                            <td>{{data_time[8].startime}}</td>
+                            <td>{{data_time[8].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[8].isblue}" v-on:click="show(8)">{{data_status[8].status}}</td>
+                        </tr>
+                        <tr id="ten">
+                            <td>{{data_time[9].startime}}</td>
+                            <td>{{data_time[9].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[9].isblue}" v-on:click="show(9)">{{data_status[9].status}}</td>
+                        </tr>
+                        <tr id="eleven">
+                            <td>{{data_time[10].startime}}</td>
+                            <td>{{data_time[10].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[10].isblue}" v-on:click="show(10)">{{data_status[10].status}}</td>
+                        </tr>
+                        <tr id="twelve">
+                            <td>{{data_time[11].startime}}</td>
+                            <td>{{data_time[11].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[11].isblue}" v-on:click="show(11)">{{data_status[11].status}}</td>
+                        </tr>
+                        <tr id="thirth">
+                            <td>{{data_time[12].startime}}</td>
+                            <td>{{data_time[12].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[12].isblue}" v-on:click="show(12)">{{data_status[12].status}}</td>
+                        </tr>
+                        <tr id="forth">
+                            <td>{{data_time[13].startime}}</td>
+                            <td>{{data_time[13].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[13].isblue}" v-on:click="show(13)">{{data_status[13].status}}</td>
+                        </tr>
+                        <tr id="fifth">
+                            <td>{{data_time[14].startime}}</td>
+                            <td>{{data_time[14].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[14].isblue}" v-on:click="show(14)">{{data_status[14].status}}</td>
+                        </tr>
+                        <tr id="sixth">
+                            <td>{{data_time[15].startime}}</td>
+                            <td>{{data_time[15].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[15].isblue}" v-on:click="show(15)">{{data_status[15].status}}</td>
+                        </tr>
+                        <tr id="seventh">
+                            <td>{{data_time[16].startime}}</td>
+                            <td>{{data_time[16].endtime}}</td>
+                            <td class="evaluation_link" v-bind:class="{'isblue':isblues[16].isblue}" v-on:click="show(16)">{{data_status[16].status}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -135,5 +175,7 @@
         <script src="../js/vue.js"></script>
         <script src="../js/vue-resource.min.js"></script>
         <script src="../js/barber_time.js"></script>
+        <script>
+        </script>
     </body>
 </html>

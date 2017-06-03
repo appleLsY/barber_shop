@@ -751,6 +751,29 @@ li{
   border-radius: 5px 5px 5px 5px;
   cursor: pointer;
 }
+.order_number{
+  width: 400px;
+  height: 40px;
+  float: right;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-left: 50px;
+}
+.order_number span{
+  color: white;
+  width: 60px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 30px;
+  float: left;
+}
+.order_number input{
+  width: 150px;
+  color: white;
+  float: left;
+  margin-top: 6px;
+  background: transparent; /*input背景透明*/
+}
 
 /*理发师个人信息*/
 .barber_info{
@@ -1102,6 +1125,10 @@ li{
   text-align: center;
   margin-top: 10px;
   border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
+}
+.isblue{
+  color: blue;
   cursor: pointer;
 }
 

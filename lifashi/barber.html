@@ -41,7 +41,6 @@
                         <th>套餐名称</th>
                         <th>花费时间</th>
                         <th>价格</th>
-                        <th>操作</th>
                     </thead>
                     <tbody>
                         <tr v-for="order in allorders">
@@ -50,7 +49,6 @@
                             <td>{{order.Packages[0].Name}}</td>
                             <td>{{order.Packages[0].Timespan}}分钟</td>
                             <td>{{order.Packages[0].Price}}</td>
-                            <td class="evaluation_link">服务<a href="StudentWriteEvaluation.html"><span>开始服务</span></a></td>
                         </tr>
                     </tbody>
                 </table>

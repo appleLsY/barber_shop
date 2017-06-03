@@ -55,6 +55,7 @@ var vue=new Vue({
                     this.orders=data.body;
                     console.log(this.orders.List);
                     this.allorders=this.orders.List;
+                    
                     // for(var i=0;i<this.orders.List.length;i++){
                     // }
                 })

@@ -67,8 +67,6 @@
             </div>
             <div id="personInfor">
                 <p id="userName"></p>
-                <p><span id="userEmail">531122545@qq.com</span></p>
-                <p><span id="userPhone">15826418364</span></p>
                 <p id="login_out">
                     <a>退出登录</a>
                 </p>
@@ -572,8 +570,8 @@
                 <div role="tabpanel" class="tab-pane" id="chat">
                     <div class="check-div form-inline">
                         <div class="col-xs-4" style="float:right;">
-                            <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
-                            <button class="btn btn-white btn-xs ">查 询 </button>
+                            <input type="text" class="form-control input-sm" id="s_share" placeholder="输入文字搜索">
+                            <button class="btn btn-white btn-xs" id="search_share">查 询 </button>
                         </div>
                     </div>
                     <div class="data-div">
@@ -607,6 +605,8 @@
                                 </select> 页
                             </li>
                             <li class="gray" id="all_share">
+                            </li>
+                            <li id="share_return">
                             </li>
                         </ul>
                     </footer>
@@ -726,7 +726,12 @@
                         "</div>"
                         )
                     }
-                }
+                    for(var i=1;i<(Math.ceil(data.RecordCount/10)+1);i++)
+                    {
+                        $("#user_page").append("<option value=\""+i+"\">"+i+"</option>")
+                    }
+                    $("#user_all_page").text("共"+Math.ceil(data.RecordCount/10)+"页");
+                    }
             })
         })
         $("#share_page").change(function () {

@@ -40,6 +40,7 @@ var vm=new Vue({
         name:'',
         login_in:true,
         if_login:false,
+        order_no:false,
     },
     methods:{
         user_login:function(){
@@ -86,7 +87,7 @@ var vm=new Vue({
                     emulateJSON: true
             }).then(function(data){
                 console.log(data);
-                alert("预约成功")
+                alert("预约成功");
                 window.location.href=""
             },function(dd){
                 alert(dd);
