@@ -514,7 +514,7 @@ color:#00b29f;
 .page_divide{
   width: 100%;
   height: 36px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .page_divide ul{
   width: 30%;
@@ -1200,4 +1200,21 @@ li{
   margin-left: -300px;
   margin-top: -130px;         /*将div垂直居中的展示在大的div里面*/
   color: white;
+}
+.delete_sh{
+  width: 60px;
+  height: 30px;
+  background-color: #1296db;
+  float: right;
+  text-align: center;
+  border-radius: 5px 5px 5px 5px;
+  line-height: 30px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.share_nodata{
+  color: white;
+  margin-top: 50px;
+  font-size: 24px;
 }

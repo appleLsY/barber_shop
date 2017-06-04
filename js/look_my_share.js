@@ -13,6 +13,9 @@ var pageBar = new Vue({
         activeNum:0,
         name:"",
         username:'',
+        error:'',
+        is_have_data:false,
+        share_data:true,
     },
     methods:{
         //获取页码数量
@@ -41,11 +44,20 @@ var pageBar = new Vue({
                 }).then(function(data){
                     console.log(data);
                     this.articles=data.body;
-                    this.newData=[];
-                    let len=this.len;
-                    var pageNum=datas-1;
-                    for (let i = pageNum * len; i < (pageNum * len + len); i++) {
-                    this.articles[i] !== undefined ? this.newData.push(this.articles[i]) : '';
+                    if(this.articles.length==0){
+                        this.is_have_data=true;
+                        this.share_data=false;
+                        this.error="没有数据!";
+                    }
+                    else{
+                        this.share_data=true;
+                        this.is_have_data=false;
+                        this.newData=[];
+                        let len=this.len;
+                        var pageNum=datas-1;
+                        for (let i = pageNum * len; i < (pageNum * len + len); i++) {
+                        this.articles[i] !== undefined ? this.newData.push(this.articles[i]) : '';
+                        }
                     }
                 })
             }
@@ -64,7 +76,15 @@ var pageBar = new Vue({
             window.location.href="user_info.html";
         },
         delete_share:function(data){
-            alert(data);
+                this.$http({
+                    method:'DELETE',
+                    headers:{token:localStorage.getItem("userId")},
+                    url:'http://localhost:11162/api/v1/share?id='+data,
+                }).then(function(data){
+                    alert("删除成功!");
+                    window.location.reload();
+                })
+            
         },
         btnClick: function(data){//页码点击事件
             if(data != this.cur){
@@ -73,7 +93,7 @@ var pageBar = new Vue({
             }
         },
         return_index:function(){
-            window.location.href="index.html";
+            window.location.href="user_info.html";
         },
         pageClick: function(){
             //console.log('现在在'+this.cur+'页');

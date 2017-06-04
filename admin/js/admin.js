@@ -177,40 +177,6 @@ $(function () {
         })
     })
     //订单搜索
- $("#search_order").click(function(){
-     var uu=$("#s_order").val();
-     $.ajax({
-         url:'http://localhost:11162/api/v1/order/search?keyWord='+uu,
-         headers:{token:localStorage.getItem("userId")},
-         type:'GET',
-         dataType:'json',
-         success:function(data){
-             $("allorder").html("");
-             $("#order_page").html("");
-             $("#all_order").html("");
-             console.log(data);
-            for(var i=0;i<data.List.length;i++){
-                $("#allorder").append("<div class=\"row\"><div class=\"col-xs-2\">"+data.List[i].OrderNo+"</div>"+
-                "<div class=\"col-xs-2\">"+data.List[i].UserName+"</div>"+
-                "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Name+"</div>"+
-                "<div class=\"col-xs-3\">"+data.List[i].Packages[0].Description+"</div>"+
-                "<div class=\"col-xs-2\">"+data.List[i].Packages[0].Timespan+"</div>"+
-                "<div class=\"col-xs-1\">"+data.List[i].Packages[0].Price+"</div>"+
-                "</div>"
-                )
-            }
-            for(var i=1;i<(Math.ceil(data.RecordCount/5)+1);i++)
-            {
-                $("#order_page").append("<option>"+i+"</option>")
-            }
-            $("#all_order").text("共"+Math.ceil(data.RecordCount/5)+"页");
-            $("#order_return").text("返回");
-            }
-     })
- })
- $("#order_return").click(function(){
-     $("#order_manage").click();
- })
 
     //分享搜索
     $("#search_share").click(function () {
@@ -386,6 +352,36 @@ $(function () {
         })
     })
 
+    $("#save_order").click(function () {
+        var id = $("#hide_order_id").val();
+        var stauts=$("#order_status").val();
+        // var ss="";
+        // alert(stauts);
+        // if(status==1){
+        //     ss="Closed";
+        // }
+        // else if(status==2){
+        //     ss="Completed";
+        // }
+        // alert(ss);
+        $.ajax({
+            url: 'http://localhost:11162/api/v1/order',
+            headers: {
+                token: localStorage.getItem("userId"),
+            },
+            type: 'PUT',
+            dataType: 'json',
+            data: {
+                Id: id,
+                OrderStatus:stauts,
+            },
+            success: function (data) {
+                $("#order_manage").click();
+            }
+        })
+    })
+    
+
     //订单管理
     $("#order_manage").click(function () {
         $("#allorder").html("");
@@ -398,15 +394,29 @@ $(function () {
             type: 'GET',
             dataType: 'json',
             success: function (data) {
+                var h="";
                 console.log(data);
                 for (var i = 0; i < data.List.length; i++) {
+                    if(data.List[i].OrderStatus=="Completed"){
+                        h="已完成";
+                    }
+                    else if(data.List[i].OrderStatus=="Paid"){
+                        h="已支付";
+                    }
+                    else if(data.List[i].OrderStatus=="NoPay"){
+                        h="未支付";
+                    }
+                    else{
+                        h="已关闭"
+                    }
                     $("#allorder").append("<div class=\"row\"><div class=\"col-xs-2\">" + data.List[i].OrderNo + "</div>" +
                         "<div class=\"col-xs-2\">" + data.List[i].UserName + "</div>" +
                         "<div class=\"col-xs-2\">" + data.List[i].Packages[0].Name + "</div>" +
-                        "<div class=\"col-xs-3\">" + data.List[i].Packages[0].Description + "</div>" +
-                        "<div class=\"col-xs-2\">" + data.List[i].Packages[0].Timespan + "</div>" +
+                        "<div class=\"col-xs-2\">" + data.List[i].Packages[0].Description + "</div>" +
+                        "<div class=\"col-xs-2\">" + h + "</div>" +
                         "<div class=\"col-xs-1\">" + data.List[i].Packages[0].Price + "</div>" +
-                        "</div>"
+                        "<div class=\"col-xs-1\"><button id=\"edit_announcement" + i + "\" class=\"btn btn-success btn-xs\" data-toggle=\"modal\"data-target=\"#reviseOrder\" onclick=\"show_order(" + data.List[i].Id + ")\">" +
+                        "开始服务" + "</button></div>"
                     )
                 }
                 for (var i = 1; i < (Math.ceil(data.RecordCount / 5) + 1); i++) {
@@ -461,13 +471,23 @@ $(function () {
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                console.log(data.StartTime)
+                $("#start_time").val("");
+                $("#end_time").val("");
+                $("#barber_name").val("");
+                $("#maxpeople").val("");
+                console.log(data)
                 var s = data.StartTime;
                 s = s.substring(11, 19)
                 var e = data.EndTime;
-                e = e.substring(11, 19)
+                e = e.substring(11, 19);
+                var name=data.Name;
+                var max=data.MaxServeCount;
+                var dd=data.IsBusiness;
                 $("#start_time").val(s);
                 $("#end_time").val(e);
+                $("#barber_name").val(name);
+                $("#maxpeople").val(max);
+                $("input[name='ifopen'][value='"+dd+"']").attr("checked",true);
             }
         })
 
@@ -479,11 +499,14 @@ $(function () {
     })
     $("#cancelTime").click(function () {
         $(".shop_time input").attr('disabled', 'true');
+        $("input:radio[name='ifopen']").attr("checked",false);
         $("#shopinfo_manage").click();
     })
     $("#changeTime").click(function () {
         var start = $("#start_time").val();
         var end = $("#end_time").val();
+        var isbusiness=$("input[name='ifopen'][checked]").val();
+        alert(isbusiness);
         $.ajax({
             url: 'http://localhost:11162/api/v1/shopSetting',
             headers: {

@@ -352,7 +352,7 @@ select {
 /*店铺设置样式*/
 .show_shoptime{
 	width: 600px;
-	height: 240px;
+	height: 500px;
 	margin-left: 180px;
 	margin-top: 50px;
 }
@@ -361,8 +361,12 @@ select {
 	margin: 0 auto;
 	height: 80px;
 	line-height: 80px;
-	margin-top: 30px;
+	margin-top: 20px;
 	text-align: center;
+}
+.shop_time span{
+	width: 100px;
+	text-align: right;
 }
 .shop_time input{
 	width: 150px;
@@ -371,4 +375,8 @@ select {
 .edit{
 	margin-left: 600px;
 	margin-right: 50px;
+}
+#ifopen input{
+	width: 60px;
+	height: 20px;
 }

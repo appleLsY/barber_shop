@@ -531,10 +531,6 @@
                     <div class="check-div form-inline">
                         <div class="col-xs-3">
                         </div>
-                        <div class="col-xs-4" style="float:right;">
-                            <input type="text" class="form-control input-sm" id="s_order" placeholder="输入文字搜索">
-                            <button class="btn btn-white btn-xs" id="search_order">查 询 </button>
-                        </div>
                     </div>
                     <div class="data-div">
                         <div class="row tableHeader">
@@ -547,14 +543,17 @@
                             <div class="col-xs-2">
                                 套餐名称
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-xs-2">
                                 套餐描述
                             </div>
                             <div class="col-xs-2">
-                                花费时间/分钟
+                                状态
                             </div>
                             <div class="col-xs-1">
                                 价格
+                            </div>
+                            <div class="col-xs-1">
+                                操作
                             </div>
                         </div>
                         <div class="tablebody" id="allorder">
@@ -574,6 +573,44 @@
                             </li>
                         </ul>
                     </footer>
+                    <!--弹出修改用户窗口-->
+                    <div class="modal fade" id="reviseOrder" role="dialog" aria-labelledby="gridSystemModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="gridSystemModalLabel">修改订单状态</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <form class="form-horizontal">
+                                            <div class="form-group" style="margin-top:60px;">
+                                                <label for="sName" class="col-xs-3 control-label">订单状态：</label>
+                                                <div class="col-xs-8 ">
+                                                    <select class="form-control input-sm duiqi" id="order_status" >
+                                                        <option value="Closed">
+                                                            关闭
+                                                        </option>
+                                                        <option value="Completed">
+                                                            完成
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <input value="" id="hide_order_id" style="display:none;" />
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                    <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id="save_order">保 存</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
                 </div>
                 <!--分享管理模块-->
                 <div role="tabpanel" class="tab-pane" id="chat">
@@ -667,10 +704,23 @@
                     </div>
                     <div class="show_shoptime">
                         <div class="shop_time">
-                            <span>店铺开始营业时间：</span><input id="start_time" value="" />
+                            <span>理发店的名称：</span><input id="barber_name" value="" />
                         </div>
                         <div class="shop_time">
-                            <span>店铺结束营业时间：</span><input id="end_time" value="" />
+                            <span>开始营业时间：</span><input id="start_time" value="" />
+                        </div>
+                        <div class="shop_time">
+                            <span>结束营业时间：</span><input id="end_time" value="" />
+                        </div>
+                        <div class="shop_time">
+                            <span>最大服务人数：</span><input id="maxpeople" value="" />
+                        </div>
+                        <div class="shop_time" id="ifopen">
+                            <span>是否营业：</span>
+                            <label>
+                            <input type="radio" name="ifopen" class="open" value="true">正常</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label>
+                            <input type="radio" name="ifopen" class="open" value="false"> 禁用</label>
                         </div>
                     </div>
                     <button class="btn btn-success btn-xs edit" data-toggle="modal" id="changeTime">确认修改</button>
@@ -859,6 +909,10 @@
                     $("#announce_content").text(result.Content);
                 }
             })
+        }
+        //显示订单
+        function show_order(data){
+            $("#hide_order_id").val(data);
         }
         //显示修改套餐信息
         function show_package(data) {

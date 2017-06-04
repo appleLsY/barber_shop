@@ -13,6 +13,7 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.easydropdown.js"></script>
         <link href="css/nav.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="css/zoom.css" rel="stylesheet">
     </head>
     <body>
         <div class="banner-bg-one" id="home">
@@ -39,17 +40,20 @@
                     </div>
                     </div>
                     <div class="contents">
-                        <div class="look_order" v-on:click="look_share">
-                            查看发表信息
-                        </div>
-                        <div class="look_order" v-on:click="look_order">
-                            查看预约信息
-                        </div>
-                        <div class="look_order" v-on:click="look_info">
-                            修改个人信息
+                        <div class="look_all">
+                            <div class="look_order" v-on:click="look_share">
+                                查看发表信息
+                            </div>
+                            <div class="look_order" v-on:click="look_order">
+                                查看预约信息
+                            </div>
+                            <div class="look_order" v-on:click="look_info">
+                                修改个人信息
+                            </div>
                         </div>
                         <div class="share">
-                            <div class="see_share" v-for="article in newData">
+                            <div v-if="is_have_data" class="share_nodata">{{error}}</div>
+                            <div class="see_share" v-for="article in newData" v-if="share_data">
                                 <div class="share_touxiang">
                                     <img v-bind:src="article.photo">
                                 </div>
@@ -62,9 +66,9 @@
                                     </div>
                                 </div>
                                 <div class="jiange"></div>
-                                <div class="share_photo" v-for="img in article.share_image">
-                                        <img v-bind:src="img" class="min" onclick="show(this)">
-                                </div>
+                                <input v-bind:id="article.Id" class="share_id" style="display:none" />
+                                <!--<div class="share_photo">-->
+                                        <img v-bind:src="article.ImageUrl" class="min" data-action="zoom">
                                 <div class="delete_sh" v-on:click="delete_share(article.Id)">删除</div>
                             </div>
                         </div>
@@ -72,7 +76,7 @@
                             <div class="return_page" v-on:click="return_index">
                                 返回
                             </div>
-                            <div class="page_divide">
+                            <div class="page_divide"v-if="share_data">
                                 <ul>
                                     <li v-if="cur>1"><a v-on:click="cur--,pageClick()">上一页</a></li>
                                     <li v-if="cur==1"><a class="banclick">上一页</a></li>
@@ -94,5 +98,7 @@
         <script src="js/vue.js"></script>
         <script src="js/vue-resource.min.js"></script>
         <script src="js/look_my_share.js"></script>
+        <script src="js/transition.js"></script>
+        <script src="js/zoom.js"></script>
     </body>
 </html>
