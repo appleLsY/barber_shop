@@ -27,6 +27,7 @@ $(function () {
                     "修改" + "</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class=\"btn btn-danger btn-xs\" data-toggle=\"modal\" data-target=\"#deleteAnnouncement\" onclick=\"del(" + data.List[i].Id + ")\">" +
                     "删除" + "</button></div></div>"
                 )
+                 $("input[name='situation'][value='"+data.List[i].IsEnable+"']").attr("checked",true);
             }
             for (var i = 1; i < (Math.ceil(data.RecordCount / 5) + 1); i++) {
                 $("#announcement_page").append("<option value=\"" + i + "\">" + i + "</option>")
@@ -38,6 +39,7 @@ $(function () {
     $("#announce_save").click(function () {
         var title = $("#sName").val();
         var content = $("#publish_content").val();
+        var value = $("input[name='situation']:checked").val();
         console.log(title);
         console.log(content);
         $.ajax({
@@ -50,6 +52,7 @@ $(function () {
             data: {
                 Title: title,
                 Content: content,
+                IsEnable: value
             },
             success: function (data) {
                 window.location.reload();
@@ -61,7 +64,8 @@ $(function () {
         var edit_title = $("#slName").val();
         var edit_content = $("#announce_content").val();
         var edit_id = $("#hide_announce_id").val();
-        var value = $('input[name="situation"]:checked').val(); //获取被选中Radio的Value值
+        var value = $("input[name='situation']:checked").val(); //获取被选中Radio的Value值
+        alert(value);
         console.log(edit_title);
         console.log(edit_content);
         $.ajax({
@@ -503,9 +507,11 @@ $(function () {
         $("#shopinfo_manage").click();
     })
     $("#changeTime").click(function () {
+        var newName = $("#barber_name").val();
         var start = $("#start_time").val();
-        var end = $("#end_time").val();
-        var isbusiness=$("input[name='ifopen'][checked]").val();
+        var end = $("#end_time").val();       
+       // var isbusiness=$("input[name='ifopen'][checked]").val();
+        var isbusiness=$("input[name='ifopen']:checked").val();
         alert(isbusiness);
         $.ajax({
             url: 'http://localhost:11162/api/v1/shopSetting',
@@ -515,8 +521,10 @@ $(function () {
             type: "PUT",
             dataType: 'json',
             data: {
+                Name: newName,
                 StartTime: start,
                 EndTime: end,
+                IsBusiness: isbusiness
             },
             success: function (data) {
                 alert("修改成功");
