@@ -52,6 +52,25 @@
                             <div class="user_info">
                                 <input v-model="userid" style="display: none" />
                                 <div class="barber_user_info">
+                                    <img src="images/headtitle.png" alt="" />
+                                    <label>头像上传</label>
+                                    <img class="title_img" src="" id="nextview"/>   
+                                    <div class="img_choose">                            
+                                        <!--文件选择input-->
+                                        <input class="btn btn-default titlt_input" type="file" id="upFile" />
+                                        <!--文件选择input中已选择文件重置(采用form表单的reset重置按钮重置)-->
+                                        <!--<h3>重置文件选择：</h3>
+                                        <input class="btn btn-default" type="reset" id="reBtn" value="清空" />
+                                        提交压缩后的base64文件数据给后台
+                                        <h3>传给后台</h3>-->
+                                        <input class="btn btn-default title_commit" type="button" id="upTo" value="提交"/>
+                                    </div>
+                                    <!--后台所要获取的文件base64-->
+                                    <!--<h3>后台获取base64文件数据：(一个隐藏域)</h3>-->
+                                    <input id="imgOne" name="imgOne" type="hidden"/>
+                                    <input id="img_url" type="hidden"/>
+                                </div>
+                                <div class="barber_user_info">
                                     <img src="images/user_two.png" alt="" />
                                     <label>用户姓名</label>
                                     <input v-model="username" v-bind:readonly="readonly" class="noedit" v-bind:class="{'isedit':isedit,'noedit':noedit}" />
@@ -94,5 +113,7 @@
         <script src="js/vue.js"></script>
         <script src="js/vue-resource.min.js"></script>
         <script src="js/user_info.js"></script>
+        <script  src="js/tools.js"></script>
+        <script  src="js/pictureHandle.js"></script>
     </body>
 </html>
