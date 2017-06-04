@@ -55,7 +55,7 @@ var vm=new Vue({
         //         return null;        
         //     },
         show_barber:function(){
-            window.location.href="barber.html";
+            window.location.href="allbarber.html";
         },
         getUser:function(){
             if(window.localStorage.length!=0)

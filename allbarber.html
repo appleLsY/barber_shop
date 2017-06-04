@@ -39,7 +39,7 @@
                             <div class="barberinfo_each" v-for="barber in newBarber">
                                 <div class="barberinfo_img">
                                     <div class="barberinfo_each_img">   
-                                        <img class="barberinfo_each_img" src="images/god2.jpg">                                     
+                                        <img class="barberinfo_each_img" v-bind:src="barber.ImageUrl">                                     
                                     </div>
                                 </div>
                                 <div class="barberinfo_name">

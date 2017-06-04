@@ -46,6 +46,7 @@ var pageBar = new Vue({
                     let len=this.len;
                     var pageNum=datas-1;
                     for (let i = pageNum * len; i < (pageNum * len + len); i++) {
+                        this.allorders[i].StartTime=this.allorders[i].StartTime.replace("T"," ");
                     this.allorders[i] !== undefined ? this.orders.push(this.allorders[i]) : '';
                     }
                 })

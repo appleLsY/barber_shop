@@ -534,7 +534,6 @@ $(function () {
         })
     })
     //统计
-    //店铺管理
     $("#count_manage").click(function () {
         $.ajax({
             url: 'http://localhost:11162/api/v1/statistics/loginCounts',

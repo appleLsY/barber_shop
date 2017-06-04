@@ -599,6 +599,13 @@ li{
   position: relative;
   margin-left: 40px;
 }
+.contact_tel{
+  width: 600px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 22px;
+  color: white;
+}
 
 
 
@@ -1115,9 +1122,10 @@ li{
 }
 .order_data{
   color: black;
+  background-color: white
 }
 .order_data thead{
-  color: white;
+  color: black;
 }
 
 /*查看预约信息*/

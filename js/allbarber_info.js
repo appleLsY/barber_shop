@@ -11,6 +11,9 @@ var pageBar = new Vue({
         ],
         newBarber:[],
         activeNum:0,
+        if_login:false,
+        login_in:true,
+        name:"",
     },
     methods:{
         //获取页码数量
@@ -29,6 +32,15 @@ var pageBar = new Vue({
         },
         //页码变化获取数据
         getData:function(datas){
+            if(localStorage.length==0){
+                this.login_in=true;
+                this.if_login=false;
+            }
+            else{
+                this.login_in=false;
+                this.if_login=true;
+                this.name=localStorage.getItem("username");
+            }
             this.$http.get("http://localhost:11162/api/v1/account/allBarber").then(function(data){
                 this.barbers=data.body;
                 //console.log(this.articles);
@@ -60,6 +72,10 @@ var pageBar = new Vue({
             this.activeNum=this.cur;
             this.getData(this.cur);
         },
+        login_out:function(){
+            localStorage.clear();
+            window.location.href="login.html";
+        }
     },
     watch: {
         cur: function(oldValue , newValue){
