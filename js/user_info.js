@@ -19,6 +19,8 @@ var vm=new Vue({
         if_phone_error:false,
         edit_info:true,
         edit_qued:false,
+        photo_url:"",
+        edit_img:false,
     },
     methods:{
         show:function(){
@@ -26,7 +28,8 @@ var vm=new Vue({
             this.edit_qued=true;
             this.noedit=false;
             this.isedit=true;
-            this.readonly=false
+            this.readonly=false;
+            this.edit_img=true;
         },
         look_order:function(){
             window.location.href="look_my_order.html";
@@ -106,6 +109,7 @@ var vm=new Vue({
                     this.phone=this.infomations.PhoneNumber;
                     this.email=this.infomations.Email;
                     this.introduce=this.infomations.PersonalInfo;
+                    this.photo_url=this.infomations.ImageUrl;
                 },function(res){
                     console.log(res);
                     alert(res.message);
